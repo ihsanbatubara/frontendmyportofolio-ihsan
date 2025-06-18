@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { getAllPosts } from "../../services/index/posts";
 import ErrorMessage from "../../components/ErrorMessage";
-import ArticleCard from "../../components/ArticleCard";
+import ProjectCard from "../../components/ProjectCard";
 import MainLayout from "../../components/MainLayout";
 import Pagination from "../../components/Pagination";
 import { useSearchParams } from "react-router-dom";
@@ -11,16 +11,12 @@ import Search from "../../components/Search";
 import AsyncMultiSelectTagDropdown from "../../components/SelectAsyncPaginate";
 import { getAllCategories } from "../../services/index/postCategories";
 import { filterCategories } from "../../utils/multiSelectTagUtils";
-import ProjectCard from "../../components/ProjectCard";
+import ArticleCardSkeleton from "../../components/ArticleCardSkeleton"; // bisa diganti dengan ProjectCardSkeleton jika ada
 
 let isFirstRun = true;
 
 const promiseOptions = async (search, loadedOptions, { page }) => {
-    const { data: categoriesData, headers } = await getAllCategories(
-        search,
-        page,
-    );
-
+    const { data: categoriesData, headers } = await getAllCategories(search, page);
     return {
         options: filterCategories(search, categoriesData),
         hasMore:
@@ -43,14 +39,12 @@ const ProjectPage = () => {
 
     const { data, isLoading, isError, isFetching, refetch } = useQuery({
         queryFn: () => getAllPosts(searchKeyword, currentPage, 12, categories),
-        queryKey: ["posts", categories],
+        queryKey: ["posts", categories, currentPage, searchKeyword],
         onError: (error) => {
             toast.error(error.message);
             console.log(error);
         },
     });
-
-    console.log(data);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -62,7 +56,6 @@ const ProjectPage = () => {
     }, [currentPage, searchKeyword, refetch]);
 
     const handlePageChange = (page) => {
-        // change the page's query string in the URL
         setSearchParams({ page, search: searchKeyword });
     };
 
@@ -73,7 +66,7 @@ const ProjectPage = () => {
     return (
         <MainLayout>
             <section className="projectpage containers flex flex-col px-5 py-10 mx-auto">
-            <h2 className='title-project'>My Project</h2>
+                <h2 className="title-project">My Project</h2>
                 <div className="flex flex-col mb-10 space-y-3 lg:space-y-0 lg:flex-row lg:items-center lg:gap-x-4">
                     <Search className="w-full max-w-xl" onSearchKeyword={handleSearch} />
                     <AsyncMultiSelectTagDropdown
@@ -84,9 +77,13 @@ const ProjectPage = () => {
                         }}
                     />
                 </div>
-                <div className='myproject' id='projects'>
-                    <div className="all-items">
-                        {isError ? (
+                <div className="myproject" id="projects">
+                    <div className="all-items flex flex-wrap gap-5">
+                        {isLoading || isFetching ? (
+                            Array.from({ length: 6 }).map((_, index) => (
+                                <ArticleCardSkeleton key={index} />
+                            ))
+                        ) : isError ? (
                             <ErrorMessage message="Couldn't fetch the posts data" />
                         ) : data?.data.length === 0 ? (
                             <p className="text-orange-500">No Project Found!</p>
@@ -101,9 +98,9 @@ const ProjectPage = () => {
                         )}
                     </div>
                 </div>
-                {!isLoading && (
+                {!isLoading && !isError && (
                     <Pagination
-                        onPageChange={(page) => handlePageChange(page)}
+                        onPageChange={handlePageChange}
                         currentPage={currentPage}
                         totalPageCount={JSON.parse(data?.headers?.["x-totalpagecount"])}
                     />

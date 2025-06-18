@@ -6,6 +6,7 @@ import ErrorMessage from '../../../components/ErrorMessage'
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from 'react-router-dom'
 import ProjectCard from "../../../components/ProjectCard";
+import ArticleCardSkeleton from "../../../components/ArticleCardSkeleton";
 
 const Articles = () => {
     const { data, isLoading, isError } = useQuery({
@@ -16,26 +17,30 @@ const Articles = () => {
             console.log(error)
         }
     });
-  
+
     return (
         <section className="flex flex-col container mx-auto px-5 py-10">
-                   <div className='myproject' id='projects'>
-            <div className="containers">
-                <h2 className='section-title'>Projects</h2>
-                <div className="all-items">
-                {isError ? (
-                    <ErrorMessage message="Couldn't fetch the posts data" />
-                ) : (
-                    data?.data.map((post) => (
-                        <ProjectCard
-                            key={post._id}
-                            post={post}
-                            className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
-                        />
-                    ))
-                )}
-            </div>
-            </div>
+            <div className='myproject' id='projects'>
+                <div className="containers">
+                    <h2 className='section-title'>Projects</h2>
+                    <div className="all-items">
+                        {isLoading ? (
+                            Array.from({ length: 6 }).map((_, index) => (
+                                <ArticleCardSkeleton key={index} />
+                            ))
+                        ) : isError ? (
+                            <ErrorMessage message="Couldn't fetch the posts data" />
+                        ) : (
+                            data?.data.map((post) => (
+                                <ProjectCard
+                                    key={post._id}
+                                    post={post}
+                                    className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
+                                />
+                            ))
+                        )}
+                    </div>
+                </div>
             </div>
             <Link
                 to="/projectall"
@@ -44,7 +49,7 @@ const Articles = () => {
                 <span>More Projects</span>
                 <FaArrowRight className="w-3 h-3" />
             </Link>
-            </section>
+        </section>
     );
 };
 

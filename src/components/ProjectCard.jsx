@@ -1,14 +1,10 @@
 import React from 'react';
-// import project1 from '../../../assets/project-1.jpg';
-// import project2 from '../../../assets/project-2.jpg';
-// import project3 from '../../../assets/project-3.jpg';
 import { images, stables } from '../constants'
 import { FaGithub, FaGlobe } from "react-icons/fa";
 
 const ProjectCard = ({ post }) => {
     return (
         <>
-            {/* {projects.map((project) => ( */}
             <div className="items" data-aos="fade-up">
                 <div className="left">
                     <div className="img-project">
