@@ -16,13 +16,12 @@ import Categories from "./pages/admin/screens/categories/Categories";
 import EditCategories from "./pages/admin/screens/categories/EditCategories";
 import Users from "./pages/admin/screens/users/Users";
 import ArticleDetailPage from './pages/articleDetail/ArticleDetailPage';
-import { BubbleChat } from 'flowise-embed-react';
-import { ToastContainer } from 'react-toastify';
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Skills from './pages/home/container/Skills';
 import Articles from './pages/home/container/Articles';
 import Contact from './pages/home/container/Contact';
+import Chatbot from './components/chatbot/Chatbot';
 
 function App() {
   useEffect(function () {
@@ -31,82 +30,6 @@ function App() {
   return (
     <div className='App font-opensans'>
       {/* Chatbot Flowise */}
-      <BubbleChat
-        chatflowid="ad85fb80-9cc7-4bc9-a6ad-1a459bb40c2b"
-        apiHost="https://flowiseai-35b2f764442d.herokuapp.com"
-        theme={{
-          button: {
-            backgroundColor: '#6414fc',
-            right: 20,
-            bottom: 20,
-            size: 48, 
-            dragAndDrop: true,
-            iconColor: 'white',
-            customIconSrc: 'https://img.icons8.com/material-outlined/24/FFFFFF/message-bot.png'
-          },
-          tooltip: {
-            showTooltip: true,
-            tooltipMessage: "Hi There I'm Tio👋!",
-            tooltipBackgroundColor: '#24242c',
-            tooltipTextColor: 'white',
-            tooltipFontSize: 16,
-          },
-          customCSS: ``, // Add custom CSS styles. Use !important to override default styles
-          chatWindow: {
-            showTitle: true,
-            showAgentMessages: true,
-            title: 'TIOPS BOT',
-            welcomeMessage: 'Hello! This is My Portofolio BOT',
-            errorMessage: 'This is a custom error message',
-            backgroundColor: 'white',
-            backgroundImage: 'enter image path or link', // If set, this will overlap the background color of the chat window.
-          
-            fontSize: 16,
-            starterPrompts: ['Who is Tio Fulalo Simatupang?', 'What projects have been carried out?'], // It overrides the starter prompts set by the chat flow passed
-            starterPromptFontSize: 15,
-            clearChatOnReload: false, // If set to true, the chat will be cleared when the page reloads
-            sourceDocsTitle: 'Sources:',
-            renderHTML: true,
-            botMessage: {
-              textColor: 'black',
-              showAvatar: true,
-              avatarSrc: 'https://res.cloudinary.com/dci5b8svu/image/upload/v1739900957/Frame_4_2_kpppsn.png',
-            },
-            userMessage: {
-              backgroundColor: '#6414fc',
-              textColor: '#ffffff',
-              showAvatar: true,
-              avatarSrc: 'https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png',
-            },
-            textInput: {
-              placeholder: 'Type your question',
-              backgroundColor: '#ffffff',
-              textColor: '#303235',
-              sendButtonColor: '#6414fc',
-              maxChars: 50,
-              maxCharsWarningMessage: 'You exceeded the characters limit. Please input less than 50 characters.',
-              autoFocus: true, // If not used, autofocus is disabled on mobile and enabled on desktop. true enables it on both, false disables it on both.
-              sendMessageSound: true,
-              // sendSoundLocation: "send_message.mp3", // If this is not used, the default sound effect will be played if sendSoundMessage is true.
-              receiveMessageSound: true,
-              // receiveSoundLocation: "receive_message.mp3", // If this is not used, the default sound effect will be played if receiveSoundMessage is true.
-            },
-            feedback: {
-              color: '#303235',
-            },
-            dateTimeToggle: {
-              date: true,
-              time: true,
-            },
-            footer: {
-              textColor: '#303235',
-              text: '',
-              company: '',
-              companyLink: '',
-            },
-          }
-        }}
-      />
       
       {/* Routing Halaman */}
       <Routes>
@@ -132,6 +55,7 @@ function App() {
       </Routes>
       
       {/* Notifikasi */}
+      <Chatbot />
       <Toaster />
     </div>
   );
