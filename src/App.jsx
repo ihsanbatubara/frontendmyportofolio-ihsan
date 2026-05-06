@@ -22,6 +22,7 @@ import ResumeManage from './pages/admin/screens/ResumeManage';
 import Users from "./pages/admin/screens/users/Users";
 import ManageCertificates from './pages/admin/screens/certificates/ManageCertificates';
 import EditCertificate from './pages/admin/screens/certificates/EditCertificate';
+import CertificatesPage from './pages/certificates/CertificatesPage';
 
 
 
@@ -62,6 +63,7 @@ function App() {
           <Route path='/about' element={<AboutPage />} />
           <Route path='/skills' element={<SkillsPage />} />
           <Route path='/contact' element={<ContactPage />} />
+          <Route path='/certificates' element={<CertificatesPage />} />
 
 
           <Route path='/login' element={<LoginWithTransition />} />

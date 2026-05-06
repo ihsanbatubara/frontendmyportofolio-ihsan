@@ -47,7 +47,7 @@ const Header = () => {
       </nav>
 
       {/* Logo - Centered on all, but adjust responsive positioning */}
-      <div className="absolute left-[45%] lg:left-1/2 -translate-x-1/2 top-4 lg:top-2 z-50">
+      <div className={`absolute ${menuOpen ? 'left-1/2' : 'left-[45%]'} lg:left-1/2 -translate-x-1/2 top-4 lg:top-2 z-50`}>
 
         <Link
           className="flex items-center justify-center rounded-full w-12 h-12 lg:w-16 lg:h-16 bg-black text-white border-2 border-solid border-black text-xl lg:text-2xl font-bold shadow-[4px_4px_0px_rgba(0,0,0,0.2)] hover:scale-110 transition-transform"
@@ -109,6 +109,13 @@ const Header = () => {
               {item}
             </Link>
           ))}
+          <Link
+            to="/certificates"
+            onClick={toggleMenu}
+            className="text-2xl font-bold uppercase text-black hover:underline"
+          >
+            Certificates
+          </Link>
           <div className="flex items-center gap-6 text-3xl mt-4">
             <a href="https://github.com/lalosianturi21" className="text-black"><FaGithub /></a>
             <a href="https://www.linkedin.com/in/tio-fulalo-simatupang-5b9547210/" className="text-blue-700"><FaLinkedin /></a>
