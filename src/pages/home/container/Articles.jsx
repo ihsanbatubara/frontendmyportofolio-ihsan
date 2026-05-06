@@ -44,15 +44,19 @@ const Articles = () => {
             <div className="max-w-7xl mx-auto flex flex-col items-center">
 
                 {/* Header Area */}
-                <div className="w-full text-center mb-16">
+                <div className="w-full text-center mb-16" data-aos="fade-up">
                     <h2 className="text-4xl md:text-5xl font-black text-black uppercase mb-6 leading-tight">Imagination Trumps <br />Knowledge</h2>
                 </div>
 
 
+
                 {/* Featured Project - Only on Page 1 or if not on project page */}
                 {!isLoading && featuredPost && (
-                    <FeaturedProjectCard post={featuredPost} />
+                    <div className="w-full" data-aos="fade-up" data-aos-delay="200">
+                        <FeaturedProjectCard post={featuredPost} />
+                    </div>
                 )}
+
 
                 {/* Grid for Other Projects */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full mb-20">
@@ -68,10 +72,10 @@ const Articles = () => {
                         </div>
                     ) : (
                         gridPosts?.map((post) => (
-                            <ProjectCard
-                                key={post._id}
-                                post={post}
-                            />
+                            <div key={post._id} data-aos="fade-up" data-aos-delay={index * 100}>
+                                <ProjectCard post={post} />
+                            </div>
+
                         ))
                     )}
                 </div>

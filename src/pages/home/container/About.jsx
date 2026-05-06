@@ -15,16 +15,18 @@ const About = () => {
 
       {/* Huge Heading */}
       <div className="w-full flex justify-center mb-16 md:mb-24">
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#1a1a1a] uppercase tracking-tight text-center">
+        <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#1a1a1a] uppercase tracking-tight text-center" data-aos="fade-up">
           Passion Fuels Purpose!
         </h2>
+
       </div>
 
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 items-center">
 
         {/* Left: Biography */}
-        <div className="flex flex-col gap-6 text-[#1a1a1a] order-2 md:order-1">
+        <div className="flex flex-col gap-6 text-[#1a1a1a] order-2 md:order-1" data-aos="fade-right" data-aos-delay="200">
+
           <h3 className="text-lg font-bold uppercase tracking-widest text-gray-500">
             Biography
           </h3>
@@ -43,7 +45,8 @@ const About = () => {
         </div>
 
         {/* Center: Brutalist Profile Card */}
-        <div className="flex justify-center order-1 md:order-2">
+        <div className="flex justify-center order-1 md:order-2" data-aos="fade-up" data-aos-delay="400">
+
           <div className="relative -translate-x-3 md:translate-x-0">
 
 
@@ -61,7 +64,8 @@ const About = () => {
         </div>
 
         {/* Right: Stats */}
-        <div className="flex flex-row md:flex-col items-center justify-between md:justify-center gap-8 md:gap-16 text-center md:text-right order-3 md:order-3 w-full md:h-full">
+        <div className="flex flex-row md:flex-col items-center justify-between md:justify-center gap-8 md:gap-16 text-center md:text-right order-3 md:order-3 w-full md:h-full" data-aos="fade-left" data-aos-delay="600">
+
           <div className="flex flex-col flex-1 md:flex-none">
             <span className="text-4xl md:text-8xl font-black text-[#1a1a1a]">3+</span>
             <span className="text-xs md:text-lg font-bold text-gray-500 uppercase tracking-tight md:tracking-normal">Internships / Experience</span>
@@ -80,9 +84,10 @@ const About = () => {
 
       {/* Experience Section */}
       <div className="mt-32 max-w-4xl mx-auto">
-        <h2 className="text-5xl md:text-8xl font-black text-[#1a1a1a] mb-16 text-center">
+        <h2 className="text-5xl md:text-8xl font-black text-[#1a1a1a] mb-16 text-center" data-aos="fade-up">
           Experience
         </h2>
+
 
         <div className="flex flex-col">
           {isLoading ? (
@@ -95,7 +100,8 @@ const About = () => {
             <div className="text-center text-red-500 font-bold">Failed to load experiences.</div>
           ) : (
             experiences?.map((exp, index) => (
-              <div key={exp._id || index} className="flex gap-6 md:gap-12 group">
+            <div key={exp._id || index} className="flex gap-6 md:gap-12 group" data-aos="fade-up" data-aos-delay={index * 100}>
+
                 {/* Left: Timeline Line & Node */}
                 <div className="flex flex-col items-center relative">
                   <div className="w-1 bg-black h-full group-last:h-12"></div>
