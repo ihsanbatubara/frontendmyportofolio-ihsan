@@ -13,7 +13,7 @@ const Hero = () => {
     });
 
     return (
-        <section className="w-full max-w-[1440px] mx-auto px-6 pt-4 md:pt-8 pb-12 md:pb-20 flex flex-col md:flex-row items-center justify-between gap-12 relative">
+        <section className="w-full max-w-[1440px] mx-auto px-6 pt-10 md:pt-8 pb-12 md:pb-20 flex flex-col md:flex-row items-center justify-between gap-12 relative">
 
             {/* Left: Image & Spinning Text */}
             <div className="w-full md:w-1/2 flex justify-center relative mt-10 md:mt-0 order-2 md:order-1 translate-x-3 md:translate-x-0">

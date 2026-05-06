@@ -11,7 +11,7 @@ const About = () => {
   });
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-6 pt-20 pb-10" id="about">
+    <section className="w-full max-w-7xl mx-auto px-6 pt-16" id="about">
 
       {/* Huge Heading */}
       <div className="w-full flex justify-center mb-16 md:mb-24">
@@ -83,7 +83,7 @@ const About = () => {
       </div>
 
       {/* Experience Section */}
-      <div className="mt-32 max-w-4xl mx-auto">
+      <div className="mt-20 max-w-4xl mx-auto">
         <h2 data-aos="fade-down" className="text-5xl md:text-8xl font-black text-[#1a1a1a] mb-16 text-center">
           Experience
         </h2>

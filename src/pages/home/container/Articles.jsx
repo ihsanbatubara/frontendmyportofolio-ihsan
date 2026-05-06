@@ -40,7 +40,8 @@ const Articles = () => {
     const totalPageCount = Math.ceil(totalPostsCount / (isProjectPage ? 6 : 7));
 
     return (
-        <section className="w-full py-24 px-6">
+        <section className="w-full px-6 py-20">
+
             <div className="max-w-7xl mx-auto flex flex-col items-center">
 
                 {/* Header Area */}

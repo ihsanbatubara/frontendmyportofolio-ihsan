@@ -31,7 +31,7 @@ const Contact = () => {
 
   return (
     <main>
-      <section id="contact" className="w-full py-24 px-6">
+      <section id="contact" className="w-full py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-16">
 

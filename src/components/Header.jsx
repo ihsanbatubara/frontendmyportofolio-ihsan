@@ -64,7 +64,7 @@ const Header = () => {
           <a href="https://www.linkedin.com/in/tio-fulalo-simatupang-5b9547210/" target="_blank" rel="noopener noreferrer" className="bg-[#0077B5] text-white rounded-md p-1.5 hover:-translate-y-1 transition-transform text-xl flex items-center justify-center w-9 h-9">
             <FaLinkedin />
           </a>
-          <a href="https://instagram.com/tio_fulalo" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white rounded-lg p-1.5 hover:-translate-y-1 transition-transform text-xl flex items-center justify-center w-9 h-9">
+          <a href="https://instagram.com/lalosianturi21" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white rounded-lg p-1.5 hover:-translate-y-1 transition-transform text-xl flex items-center justify-center w-9 h-9">
             <FaInstagram />
           </a>
         </div>
@@ -110,7 +110,7 @@ const Header = () => {
           <div className="flex items-center gap-6 text-3xl mt-4">
             <a href="https://github.com/lalosianturi21" className="text-black"><FaGithub /></a>
             <a href="https://www.linkedin.com/in/tio-fulalo-simatupang-5b9547210/" className="text-blue-700"><FaLinkedin /></a>
-            <a href="https://instagram.com/tio_fulalo" className="text-pink-600"><FaInstagram /></a>
+            <a href="https://instagram.com/lalosianturi21" className="text-pink-600"><FaInstagram /></a>
           </div>
         </div>
       )}
