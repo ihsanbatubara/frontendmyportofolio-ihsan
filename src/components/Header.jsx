@@ -45,7 +45,8 @@ const Header = () => {
       </nav>
 
       {/* Logo - Centered on all, but adjust responsive positioning */}
-      <div className="absolute left-[48%] lg:left-1/2 -translate-x-1/2 top-4 lg:top-2 z-50">
+      <div className="absolute left-[45%] lg:left-1/2 -translate-x-1/2 top-4 lg:top-2 z-50">
+
         <Link
           className="flex items-center justify-center rounded-full w-12 h-12 lg:w-16 lg:h-16 bg-black text-white border-2 border-solid border-black text-xl lg:text-2xl font-bold shadow-[4px_4px_0px_rgba(0,0,0,0.2)] hover:scale-110 transition-transform"
           to="/"
