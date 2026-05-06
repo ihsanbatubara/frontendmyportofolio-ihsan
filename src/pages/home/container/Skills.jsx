@@ -28,9 +28,11 @@ const Skills = () => {
             I have expertise in Web Development and Android App Development, focusing on creating efficient, scalable, and user-friendly digital solutions using modern technologies.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-            {skillsData.map(skill => (
+            {skillsData.map((skill, index) => (
               <div 
                 key={skill.id}
+                data-aos="fade-down"
+                data-aos-delay={index * 50}
                 className="bg-white border-2 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] hover:translate-y-1 hover:shadow-[2px_2px_0px_#000] transition-all flex flex-col items-center gap-3 group"
               >
                 <div className="text-black group-hover:scale-110 transition-transform">

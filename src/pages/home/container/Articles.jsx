@@ -72,11 +72,12 @@ const Articles = () => {
                             <ErrorMessage message="Couldn't fetch the posts data" />
                         </div>
                     ) : (
-                        gridPosts?.map((post) => (
-                            <ProjectCard
-                                key={post._id}
-                                post={post}
-                            />
+                        gridPosts?.map((post, index) => (
+                            <div key={post._id} data-aos="fade-down" data-aos-delay={index * 100}>
+                                <ProjectCard
+                                    post={post}
+                                />
+                            </div>
                         ))
                     )}
                 </div>

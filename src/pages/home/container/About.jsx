@@ -69,15 +69,15 @@ const About = () => {
 
         {/* Right: Stats */}
         <div className="flex flex-row md:flex-col items-center justify-between md:justify-center gap-8 md:gap-16 text-center md:text-right order-3 md:order-3 w-full md:h-full">
-          <div className="flex flex-col flex-1 md:flex-none">
+          <div data-aos="fade-down" data-aos-delay="100" className="flex flex-col flex-1 md:flex-none">
             <span className="text-4xl md:text-8xl font-black text-[#1a1a1a]">3+</span>
             <span className="text-xs md:text-lg font-bold text-gray-500 uppercase tracking-tight md:tracking-normal">Internships / Experience</span>
           </div>
-          <div className="flex flex-col flex-1 md:flex-none">
+          <div data-aos="fade-down" data-aos-delay="300" className="flex flex-col flex-1 md:flex-none">
             <span className="text-4xl md:text-8xl font-black text-[#1a1a1a]">10+</span>
             <span className="text-xs md:text-lg font-bold text-gray-500 uppercase tracking-tight md:tracking-normal">Projects Completed</span>
           </div>
-          <div className="flex flex-col flex-1 md:flex-none">
+          <div data-aos="fade-down" data-aos-delay="500" className="flex flex-col flex-1 md:flex-none">
             <span className="text-4xl md:text-8xl font-black text-[#1a1a1a]">2+</span>
             <span className="text-xs md:text-lg font-bold text-gray-500 uppercase tracking-tight md:tracking-normal">Years Experience</span>
           </div>
@@ -103,7 +103,7 @@ const About = () => {
             <div className="text-center text-red-500 font-bold">Failed to load experiences.</div>
           ) : (
             experiences?.map((exp, index) => (
-              <div key={exp._id || index} className="flex gap-6 md:gap-12 group">
+              <div data-aos="fade-down" data-aos-delay={index * 100} key={exp._id || index} className="flex gap-6 md:gap-12 group">
                 {/* Left: Timeline Line & Node */}
                 <div className="flex flex-col items-center relative">
                   <div className="w-1 bg-black h-full group-last:h-12"></div>

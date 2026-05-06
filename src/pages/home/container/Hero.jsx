@@ -19,7 +19,7 @@ const Hero = () => {
             <div className="w-full md:w-1/2 flex justify-center relative mt-10 md:mt-0 order-2 md:order-1 translate-x-3 md:translate-x-0">
 
 
-                <div className="relative w-full max-w-lg xl:max-w-xl">
+                <div data-aos="fade-down" data-aos-delay="300" className="relative w-full max-w-[380px] md:max-w-[440px]">
                     <img
                         src={pictureHero}
                         alt="Profile"
@@ -27,7 +27,7 @@ const Hero = () => {
                     />
 
                     {/* Spinning Badge */}
-                    <div className="absolute -bottom-10 -left-10 md:-left-16 w-32 h-32 md:w-40 md:h-40">
+                    <div data-aos="fade-down" data-aos-delay="500" className="absolute -bottom-10 -left-10 md:-left-16 w-32 h-32 md:w-40 md:h-40">
                         <svg className="w-full h-full animate-[spin_10s_linear_infinite]" viewBox="0 0 100 100">
                             <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="transparent" />
                             <text className="text-[12px] font-bold uppercase">
@@ -55,7 +55,7 @@ const Hero = () => {
                 </p>
 
 
-                <div className="flex flex-wrap items-center gap-6 mt-4">
+                <div data-aos="fade-down" data-aos-delay="400" className="flex flex-wrap items-center gap-6 mt-4">
                     <a
                         href={profileData?.resume || "#"}
                         target="_blank"
@@ -77,7 +77,7 @@ const Hero = () => {
             </div>
 
             {/* Lightbulb Icon (Absolute Bottom Right) */}
-            <div className="absolute bottom-10 right-10 hidden lg:block opacity-80 hover:scale-110 transition-transform cursor-pointer animate-pulse w-24 h-24">
+            <div data-aos="fade-down" data-aos-delay="600" className="absolute bottom-15 right-10 hidden lg:block opacity-80 hover:scale-110 transition-transform cursor-pointer animate-pulse w-36 h-36">
                 <img src={lampIcon} alt="Lamp Icon" className="w-full h-full object-contain" />
             </div>
 

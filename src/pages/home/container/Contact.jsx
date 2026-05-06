@@ -37,15 +37,15 @@ const Contact = () => {
 
             {/* Left Side: Info */}
             <div className="w-full lg:w-1/2 flex flex-col justify-center">
-              <h2 className="text-6xl md:text-8xl font-black text-black uppercase tracking-tighter leading-[0.9] mb-8">
+              <h2 data-aos="fade-down" className="text-6xl md:text-8xl font-black text-black uppercase tracking-tighter leading-[0.9] mb-8">
                 Let's<br />Connect.
               </h2>
               <div className="space-y-8">
-                <p className="text-xl font-bold text-gray-500 max-w-md leading-relaxed">
+                <p data-aos="fade-down" data-aos-delay="200" className="text-xl font-bold text-gray-500 max-w-md leading-relaxed">
                   Have a project in mind? Looking for a partner to build something amazing? Reach out and let's make it happen.
                 </p>
 
-                <div className="flex flex-col gap-4">
+                <div data-aos="fade-down" data-aos-delay="400" className="flex flex-col gap-4">
                   <div className="bg-yellow-300 border-2 border-black p-6 rounded-2xl shadow-[6px_6px_0px_#000] inline-block w-fit">
                     <span className="block text-[10px] font-black uppercase tracking-widest text-black mb-1">Email Me At</span>
                     <a href="mailto:hello@example.com" className="text-xl font-black text-black border-b-2 border-black">
@@ -59,7 +59,7 @@ const Contact = () => {
             </div>
 
             {/* Right Side: Form */}
-            <div className="w-full lg:w-1/2">
+            <div data-aos="fade-down" data-aos-delay="300" className="w-full lg:w-1/2">
               <div className="bg-white border-4 border-black p-8 md:p-12 rounded-[40px] shadow-[16px_16px_0px_rgba(0,0,0,0.1)]">
                 <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-6">
                   <div className="flex flex-col gap-2">
