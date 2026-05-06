@@ -29,87 +29,97 @@ const Comment = ({
 
   return (
     <div
-      className="flex flex-col sm:flex-row bg-edit items-start gap-x-3 p-3 rounded-lg w-full"
+      className="flex flex-col sm:flex-row items-start gap-x-4 p-6 rounded-[24px] border-2 border-black bg-white shadow-[6px_6px_0px_rgba(0,0,0,0.05)] w-full mb-4"
       id={`comment-${comment?._id}`}
     >
-      <img
-        src={
-          comment?.user?.avatar
-            ? comment.user.avatar
-            : images.userImage
-        }
-        alt="user profile"
-        className="w-9 h-9 object-cover rounded-full"
-      />
-      <div className="flex-1 flex flex-col w-full">
-        <h5 className="font-bold text-dark-hard text-xs lg:text-sm">
-          {comment.user.name}
-        </h5>
-        <span className="text-xs text-white">
-          {new Date(comment.createdAt).toLocaleDateString("en-US", {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-            hour: "2-digit",
-          })}
-        </span>
+      <div className="relative">
+        <div className="absolute inset-0 bg-yellow-300 rounded-full translate-x-1 translate-y-1 -z-10 border border-black"></div>
+        <img
+          src={comment?.user?.avatar ? comment.user.avatar : images.userImage}
+          alt="user profile"
+          className="w-12 h-12 object-cover rounded-full border-2 border-black"
+        />
+      </div>
+
+      <div className="flex-1 flex flex-col w-full mt-2 sm:mt-0">
+        <div className="flex items-center justify-between w-full">
+          <h5 className="font-black text-black text-sm uppercase tracking-tight">
+            {comment.user.name}
+          </h5>
+          <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+            {new Date(comment.createdAt).toLocaleDateString("en-US", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            })}
+          </span>
+        </div>
+
         {!isEditing && (
-          <p className="font-opensans mt-2 text-dark-light">
+          <p className="font-medium mt-3 text-gray-700 leading-relaxed text-sm">
             {comment.desc}
           </p>
         )}
+
         {isEditing && (
-          <CommentForm
-            btnLabel="Update"
-            formSubmitHanlder={(value) => updateComment(value, comment._id)}
-            formCancelHandler={() => setAffectedComment(null)}
-            initialText={comment.desc}
-          />
+          <div className="mt-4">
+            <CommentForm
+              btnLabel="Update"
+              formSubmitHanlder={(value) => updateComment(value, comment._id)}
+              formCancelHandler={() => setAffectedComment(null)}
+              initialText={comment.desc}
+            />
+          </div>
         )}
-        <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-dark-light font-roboto text-sm mt-3 mb-3">
+
+        <div className="flex flex-wrap items-center gap-4 text-xs mt-6">
           {isUserLoggined && (
             <button
-              className="flex items-center space-x-1 sm:space-x-2 text-white hover:text-gray-400 transition"
+              className="flex items-center space-x-1 font-black uppercase tracking-widest text-black hover:text-yellow-500 transition"
               onClick={() =>
                 setAffectedComment({ type: "replying", _id: comment._id })
               }
             >
-              <FiMessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
+              <FiMessageSquare className="w-4 h-4" />
               <span>Reply</span>
             </button>
           )}
           {commentBelongsToUser && (
             <>
               <button
-                className="flex items-center space-x-1 sm:space-x-2 text-white hover:text-gray-400 transition"
+                className="flex items-center space-x-1 font-black uppercase tracking-widest text-black hover:text-blue-500 transition"
                 onClick={() =>
                   setAffectedComment({ type: "editing", _id: comment._id })
                 }
               >
-                <FiEdit2 className="w-4 h-4 sm:w-5 sm:h-5" />
+                <FiEdit2 className="w-4 h-4" />
                 <span>Edit</span>
               </button>
               <button
-                className="flex items-center space-x-1 sm:space-x-2 text-white hover:text-gray-400 transition"
+                className="flex items-center space-x-1 font-black uppercase tracking-widest text-red-500 hover:text-red-700 transition"
                 onClick={() => deleteComment(comment._id)}
               >
-                <FiTrash className="w-4 h-4 sm:w-5 sm:h-5" />
+                <FiTrash className="w-4 h-4" />
                 <span>Delete</span>
               </button>
             </>
           )}
         </div>
+
         {isReplying && (
-          <CommentForm
-            btnLabel="Reply"
-            formSubmitHanlder={(value) =>
-              addComment(value, repliedCommentId, replyOnUserId)
-            }
-            formCancelHandler={() => setAffectedComment(null)}
-          />
+          <div className="mt-6">
+            <CommentForm
+              btnLabel="Post Reply"
+              formSubmitHanlder={(value) =>
+                addComment(value, repliedCommentId, replyOnUserId)
+              }
+              formCancelHandler={() => setAffectedComment(null)}
+            />
+          </div>
         )}
+
         {replies.length > 0 && (
-          <div className="ml-4 sm:ml-6">
+          <div className="mt-8 space-y-4 border-l-2 border-black/10 pl-4 md:pl-8">
             {replies.map((reply) => (
               <Comment
                 key={reply._id}

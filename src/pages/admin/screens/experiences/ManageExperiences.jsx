@@ -1,19 +1,17 @@
 import { useMutation } from "@tanstack/react-query";
-import { images, stables } from "../../../../constants";
-import { createPost, deletePost, getAllPosts } from "../../../../services/index/posts";
-import Pagination from "../../../../components/Pagination";
+import { getAllExperiences, deleteExperience, createExperience } from "../../../../services/index/experiences";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useDataTable } from "../../../../hooks/useDataTable";
 import DataTable from "../../components/DataTable";
 
-const ManagePosts = () => {
+const ManageExperiences = () => {
   const navigate = useNavigate();
   const {
     userState,
     currentPage,
     searchKeyword,
-    data: postsData,
+    data: experiencesData,
     isLoading,
     isFetching,
     isLoadingDeleteData,
@@ -23,101 +21,95 @@ const ManagePosts = () => {
     deleteDataHandler,
     setCurrentPage,
   } = useDataTable({
-    dataQueryFn: () => getAllPosts(searchKeyword, currentPage),
-    dataQueryKey: "posts",
-    deleteDataMessage: "Post is deleted",
-    mutateDeleteFn: ({ slug, token }) => {
-      return deletePost({
-        slug,
+    dataQueryFn: () => getAllExperiences(),
+    dataQueryKey: "experiences",
+    deleteDataMessage: "Experience is deleted",
+    mutateDeleteFn: ({ id, token }) => {
+      return deleteExperience({
+        id,
         token,
       });
     },
   });
 
-  const { mutate: mutateCreatePost, isLoading: isLoadingCreatePost } = useMutation({
-    mutationFn: ({ token }) => createPost({ token }),
+  const { mutate: mutateCreateExperience, isLoading: isLoadingCreateExperience } = useMutation({
+    mutationFn: ({ token, experienceData }) => createExperience({ token, experienceData }),
     onSuccess: (data) => {
-      queryClient.invalidateQueries(["posts"]);
-      toast.success("Post is created, edit that now! 🎉");
-      navigate(`/admin/posts/manage/edit/${data.slug}`);
+      queryClient.invalidateQueries(["experiences"]);
+      toast.success("Experience is created, edit that now! 🎉");
+      navigate(`/admin/experiences/manage/edit/${data._id}`);
     },
     onError: (error) => {
       toast.error(error.message);
     },
   });
 
-  const handleCreateNewPost = () => {
-    mutateCreatePost({ token: userState.userInfo.token });
+  const handleCreateNewExperience = () => {
+    mutateCreateExperience({ 
+        token: userState.userInfo.token, 
+        experienceData: {
+            title: "New Experience",
+            company: "Company Name",
+            location: "Location",
+            startDate: "2023",
+            endDate: "Present",
+            description: "Describe your work here...",
+            color: "#EA4C89"
+        }
+    });
   };
 
   return (
     <DataTable
-      pageTitle="Manage Projects"
-      dataListName="Projects"
-      searchInputPlaceHolder="Post title..."
+      pageTitle="Manage Experiences"
+      dataListName="Experiences"
+      searchInputPlaceHolder="Experience title..."
       searchKeywordOnSubmitHandler={submitSearchKeywordHandler}
       searchKeywordOnChangeHandler={searchKeywordHandler}
       searchKeyword={searchKeyword}
-      tableHeaderTitleList={["Title", "Github", "Demo", "Category", "Created At", "Action"]}
+      tableHeaderTitleList={["Company", "Title", "Duration", "Location", "Action"]}
       isLoading={isLoading}
       isFetching={isFetching}
-      data={postsData?.data}
+      data={experiencesData}
       setCurrentPage={setCurrentPage}
       currentPage={currentPage}
-      headers={postsData?.headers}
       userState={userState}
       actionButton={
         <button
-          disabled={isLoadingCreatePost}
-          onClick={handleCreateNewPost}
+          disabled={isLoadingCreateExperience}
+          onClick={handleCreateNewExperience}
           className="w-full md:w-auto bg-black text-white px-6 py-4 rounded-2xl font-black uppercase text-sm border-2 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.2)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all disabled:opacity-50"
         >
-          {isLoadingCreatePost ? "Creating..." : "Add New Project"}
+          {isLoadingCreateExperience ? "Creating..." : "Add New Experience"}
         </button>
       }
     >
-      {postsData?.data.map((post) => (
-        <tr key={post._id} className="hover:bg-gray-50 transition-colors group">
+      {experiencesData?.map((exp) => (
+        <tr key={exp._id} className="hover:bg-gray-50 transition-colors group">
           <td className="px-6 py-4">
             <div className="flex items-center gap-4">
-              <img
-                src={post?.photo ? post?.photo : images.samplePostImage}
-                alt={post.title}
-                className="w-12 h-12 rounded-xl object-cover border-2 border-black shadow-[2px_2px_0px_#000]"
-              />
+              <div 
+                className="w-4 h-4 rounded-full border border-black" 
+                style={{ backgroundColor: exp.color || "#EA4C89" }}
+              ></div>
               <span className="font-bold text-black group-hover:underline underline-offset-4 decoration-2">
-                {post.title}
+                {exp.company}
               </span>
             </div>
           </td>
           <td className="px-6 py-4">
-            <span className="text-xs font-bold text-gray-500 break-all">{post.github}</span>
+            <span className="text-sm font-bold text-gray-600">{exp.title}</span>
           </td>
           <td className="px-6 py-4">
-            <span className="text-xs font-bold text-gray-500 break-all">{post.demo}</span>
+            <span className="text-xs font-bold text-gray-500 uppercase">{exp.startDate} - {exp.endDate}</span>
           </td>
           <td className="px-6 py-4">
-            <div className="flex flex-wrap gap-1">
-              {post.categories.length > 0
-                ? post.categories.slice(0, 2).map((category, index) => (
-                    <span key={index} className="bg-gray-100 text-[10px] font-black uppercase px-2 py-1 border border-black rounded-md">
-                      {category.title}
-                    </span>
-                  ))
-                : <span className="text-gray-400 text-xs italic">Uncategorized</span>}
-            </div>
-          </td>
-          <td className="px-6 py-4 font-bold text-gray-600 text-sm">
-            {new Date(post.createdAt).toLocaleDateString("en-GB", {
-              day: "2-digit",
-              month: "short",
-              year: "numeric",
-            })}
+            <span className="text-sm font-bold text-gray-600">{exp.location}</span>
           </td>
           <td className="px-6 py-4">
             <div className="flex items-center gap-3">
               <Link
-                to={`/admin/posts/manage/edit/${post?.slug}`}
+                to={`/admin/experiences/manage/edit/${exp?._id}`}
                 className="bg-black text-white px-4 py-2 rounded-lg font-bold text-xs border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,0.3)] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] transition-all"
               >
                 Edit
@@ -127,7 +119,7 @@ const ManagePosts = () => {
                 className="bg-white text-red-600 px-4 py-2 rounded-lg font-bold text-xs border-2 border-red-600 shadow-[2px_2px_0px_rgba(220,38,38,0.3)] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] transition-all disabled:opacity-50"
                 onClick={() => {
                   deleteDataHandler({
-                    slug: post?.slug,
+                    id: exp?._id,
                     token: userState.userInfo.token,
                   });
                 }}
@@ -142,4 +134,4 @@ const ManagePosts = () => {
   );
 };
 
-export default ManagePosts;
+export default ManageExperiences;

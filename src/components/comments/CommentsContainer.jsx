@@ -28,9 +28,11 @@ const CommentsContainer = ({
       },
       onSuccess: () => {
         toast.success(
-          "Your comment is sent successfully, it will be visible after the confirmation of the Admin"
+          "Your comment is sent successfully! 🎉"
         );
+        queryClient.invalidateQueries(["blog", postSlug]);
       },
+
       onError: (error) => {
         toast.error(error.message);
         console.log(error);

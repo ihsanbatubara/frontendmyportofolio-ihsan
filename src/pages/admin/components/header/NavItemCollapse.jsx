@@ -11,24 +11,24 @@ const NavItemCollapse = ({ title, children, icon, name, activeNavName, setActive
   }, [activeNavName, name]);
 
   return (
-    <div className="navitemcollapse rounded-lg transition-all duration-300">
+    <div className="flex flex-col gap-1">
       <button
-        className={`w-full flex items-center justify-between text-left text-lg px-4 py-3 rounded-lg 
-        ${name === activeNavName ? "bg-purple-500 text-white" : "text-white bg-purple-600 hover:bg-orange-500"}`}
+        className={`w-full flex items-center justify-between text-left px-5 py-4 border-2 border-black transition-all active:scale-95
+        ${name === activeNavName ? "bg-black text-white translate-x-[2px] translate-y-[2px] shadow-none" : "bg-white text-black shadow-[4px_4px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"}`}
         onClick={() => {
           setActiveNavName(name);
           setIsOpen(!isOpen);
         }}
       >
-        <div className="flex items-center gap-2">
-          {icon}
-          <span className="font-medium">{title}</span>
+        <div className="flex items-center gap-3">
+          <span className="text-xl">{icon}</span>
+          <span className="font-black uppercase text-xs tracking-widest">{title}</span>
         </div>
-        {isOpen ? <FiChevronUp /> : <FiChevronDown />}
+        {isOpen ? <FiChevronUp className="text-xl" /> : <FiChevronDown className="text-xl" />}
       </button>
 
       {isOpen && (
-        <div className="mt-2 bg-white rounded-lg shadow-md p-3 space-y-2">
+        <div className="flex flex-col gap-1 mt-1">
           {children}
         </div>
       )}

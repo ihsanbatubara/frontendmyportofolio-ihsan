@@ -130,3 +130,34 @@ export const deleteUser = async ({ slug, token }) => {
     throw new Error(error.message);
   }
 };
+
+export const updateResume = async ({ token, formData }) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.put("/api/users/updateResume", formData, config);
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data.message)
+      throw new Error(error.response.data.message);
+    throw new Error(error.message);
+  }
+};
+
+export const getPublicProfile = async () => {
+  try {
+    const { data } = await axios.get("/api/users/public-profile");
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data.message)
+      throw new Error(error.response.data.message);
+    throw new Error(error.message);
+  }
+};
+
+

@@ -31,22 +31,41 @@ const Admin = () => {
   }, []);
 
   return (
-    <div className="admin-dashboard">
-      <h1 className="dashboard-title">Admin Dashboard</h1>
+    <div className="flex flex-col gap-8">
+      <div>
+        <h1 className="text-4xl font-black text-black uppercase tracking-tight mb-2">Dashboard</h1>
+        <p className="text-gray-500 font-bold text-sm uppercase tracking-widest text-left">Overview of your portfolio activity</p>
+      </div>
       
-      <div className="admin-cards-container">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-        <div className="admin-card">
-          <h2 className="card-title">Total Projects</h2>
-          {isLoading ? <p className="loading-text">Loading...</p> : <p className="total-count">{totalPosts}</p>}
+        <div className="bg-white border-4 border-black p-8 rounded-3xl shadow-[8px_8px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-default group">
+          <h2 className="text-gray-500 font-black uppercase text-xs tracking-widest mb-4 group-hover:text-black transition-colors">Total Projects</h2>
+          {isLoading ? (
+            <div className="h-16 w-32 bg-gray-100 animate-pulse rounded-xl"></div>
+          ) : (
+            <p className="text-7xl font-black text-black tracking-tighter">{totalPosts}</p>
+          )}
         </div>
 
-        <div className="admin-card">
-          <h2 className="card-title">Total Categories</h2>
-          {isLoading ? <p className="loading-text">Loading...</p> : <p className="total-count">{totalCategories}</p>}
+        <div className="bg-white border-4 border-black p-8 rounded-3xl shadow-[8px_8px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-default group">
+          <h2 className="text-gray-500 font-black uppercase text-xs tracking-widest mb-4 group-hover:text-black transition-colors">Total Categories</h2>
+          {isLoading ? (
+            <div className="h-16 w-32 bg-gray-100 animate-pulse rounded-xl"></div>
+          ) : (
+            <p className="text-7xl font-black text-black tracking-tighter">{totalCategories}</p>
+          )}
+        </div>
+
+        <div className="bg-white border-4 border-black p-8 rounded-3xl shadow-[8px_8px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-default group">
+          <h2 className="text-gray-500 font-black uppercase text-xs tracking-widest mb-4 group-hover:text-black transition-colors">Total Users</h2>
+          {isLoading ? (
+            <div className="h-16 w-32 bg-gray-100 animate-pulse rounded-xl"></div>
+          ) : (
+            <p className="text-7xl font-black text-black tracking-tighter">{totalUsers}</p>
+          )}
         </div>
         
-
       </div>
     </div>
   );

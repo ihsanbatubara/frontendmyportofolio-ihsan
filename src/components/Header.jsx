@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../store/actions/user';
-import '../css/style.css';
+import { FaTwitter, FaGithub, FaLinkedin, FaDribbble, FaMoon, FaBars, FaTimes, FaPinterest } from 'react-icons/fa';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,54 +20,109 @@ const Header = () => {
   const toggleMenu = () => setMenuOpen((prev) => !prev);
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 
+  const navLinks = ['home', 'about', 'skills', 'project', 'contact'];
+
   return (
-    <header className='l-header'>
-      <nav className='nav bd-grid'>
-        <div>
-          <Link to='/' className='nav_logo'>Tio Fulalo</Link>
-        </div>
+    <header className="relative w-full px-6 py-5 flex items-center justify-between max-w-7xl mx-auto z-50 bg-transparent">
 
-        <div className={`nav__menu ${menuOpen ? 'show' : ''}`} id='nav-menu'>
-          <ul className='nav__list'>
-            {['home', 'about', 'skills', 'project', 'contact'].map((item) => (
-              <li className='nav__item' key={item}>
-                <Link
-                  to={item === 'home' ? '/' : `/${item}`}
-                  className='nav__link'>
-                  {item.charAt(0).toUpperCase() + item.slice(1)}
-                </Link>
-              </li>
-            ))}
+      {/* Mobile Menu Button */}
+      <button className="md:hidden text-2xl z-50" onClick={toggleMenu}>
+        {menuOpen ? <FaTimes /> : <FaBars />}
+      </button>
 
-            <li className='nav__item'>
-              <Link to='#' className='nav__link' onClick={toggleDropdown}>
-                {userInfo ? 'Account' : 'Sign Up'}
-                <i className={`bx ${dropdownOpen ? 'bx-chevron-up' : 'bx-chevron-down'}`}></i>
-              </Link>
-              {dropdownOpen && (
-                <ul className='dropdown-menu'>
-                  {userInfo ? (
-                    <>
-                      {userInfo.admin && <li><Link to='/admin' className='dropdown-item'>Admin Dashboard</Link></li>}
-                      <li><Link to='/profile' className='dropdown-item'>Profile</Link></li>
-                      <li><Link to='#' className='dropdown-item' onClick={handleLogout}>Logout</Link></li>
-                    </>
-                  ) : (
-                    <>
-                      <li><Link to='/login' className='dropdown-item'>Login</Link></li>
-                      <li><Link to='/register' className='dropdown-item'>Register</Link></li>
-                    </>
-                  )}
-                </ul>
-              )}
-            </li>
-          </ul>
-        </div>
-
-        <div className='nav__toggle' id='nav-toggle' onClick={toggleMenu} aria-label='Toggle navigation menu'>
-          <i className='bx bx-menu'></i>
-        </div>
+      {/* Left: Desktop Navigation */}
+      <nav className="hidden md:flex items-center gap-8 font-medium">
+        {navLinks.map((item) => (
+          <Link
+            key={item}
+            to={item === 'home' ? '/' : `/${item}`}
+            className="text-black hover:underline decoration-2 underline-offset-4 capitalize text-lg"
+          >
+            {item}
+          </Link>
+        ))}
       </nav>
+
+      {/* Logo */}
+      <div className="absolute left-[48%] md:left-1/2 -translate-x-1/2 top-4 md:top-2 z-50">
+
+        <Link
+          className="flex items-center justify-center rounded-full w-12 h-12 md:w-16 md:h-16 bg-black text-white border-2 border-solid border-black text-xl md:text-2xl font-bold shadow-[4px_4px_0px_rgba(0,0,0,0.2)] hover:scale-110 transition-transform"
+          to="/"
+        >
+          CB
+        </Link>
+      </div>
+
+
+
+
+
+      {/* Right: Social Icons & User Auth */}
+      <div className="flex items-center gap-4 text-xl">
+        <div className="hidden lg:flex items-center gap-5">
+          <a href="#" className="text-[#1DA1F2] hover:-translate-y-1 transition-transform text-3xl">
+            <FaTwitter />
+          </a>
+          <a href="https://github.com/lalosianturi21" target="_blank" rel="noopener noreferrer" className="bg-black text-white rounded-full p-1.5 hover:-translate-y-1 transition-transform text-xl flex items-center justify-center w-9 h-9">
+            <FaGithub />
+          </a>
+          <a href="https://www.linkedin.com/in/tio-fulalo-simatupang-5b9547210/" target="_blank" rel="noopener noreferrer" className="bg-[#0077B5] text-white rounded-md p-1.5 hover:-translate-y-1 transition-transform text-xl flex items-center justify-center w-9 h-9">
+            <FaLinkedin />
+          </a>
+          <a href="#" className="bg-[#E60023] text-white rounded-full p-1.5 hover:-translate-y-1 transition-transform text-xl flex items-center justify-center w-9 h-9">
+            <FaPinterest />
+          </a>
+          <a href="#" className="bg-[#EA4C89] text-white rounded-full p-1.5 hover:-translate-y-1 transition-transform text-xl flex items-center justify-center w-9 h-9">
+            <FaDribbble />
+          </a>
+        </div>
+
+        {/* User Account Dropdown */}
+        <div className="relative">
+          <button onClick={toggleDropdown} className="font-bold text-sm bg-black text-white px-4 py-2 rounded-lg border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,0.2)] hover:translate-y-1 hover:shadow-[2px_2px_0px_rgba(0,0,0,0.2)] transition-all">
+            {userInfo ? 'Account' : 'Login'}
+          </button>
+
+          {dropdownOpen && (
+            <div className="absolute right-0 mt-3 w-48 bg-white border-2 border-black shadow-[4px_4px_0px_#000] rounded-lg py-2 flex flex-col z-50">
+              {userInfo ? (
+                <>
+                  {userInfo.admin && <Link to='/admin' className="px-4 py-2 hover:bg-gray-100 font-medium">Admin Dashboard</Link>}
+                  <Link to='/profile' className="px-4 py-2 hover:bg-gray-100 font-medium">Profile</Link>
+                  <button onClick={handleLogout} className="px-4 py-2 hover:bg-gray-100 font-medium text-left text-red-500">Logout</button>
+                </>
+              ) : (
+                <>
+                  <Link to='/login' className="px-4 py-2 hover:bg-gray-100 font-medium">Login</Link>
+                  <Link to='/register' className="px-4 py-2 hover:bg-gray-100 font-medium">Register</Link>
+                </>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      {menuOpen && (
+        <div className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-8 md:hidden">
+          {navLinks.map((item) => (
+            <Link
+              key={item}
+              to={item === 'home' ? '/' : `/${item}`}
+              onClick={toggleMenu}
+              className="text-2xl font-bold uppercase text-black hover:underline"
+            >
+              {item}
+            </Link>
+          ))}
+          <div className="flex items-center gap-6 text-3xl mt-4">
+            <a href="#" className="text-blue-500"><FaTwitter /></a>
+            <a href="https://github.com/lalosianturi21" className="text-black"><FaGithub /></a>
+            <a href="https://www.linkedin.com/in/tio-fulalo-simatupang-5b9547210/" className="text-blue-700"><FaLinkedin /></a>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

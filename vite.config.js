@@ -9,7 +9,13 @@ export default defineConfig({
     tailwindcss()
   ],
 server: {
-  allowedHosts: true
+  allowedHosts: true,
+  proxy: {
+    '/api': {
+      target: 'http://localhost:5551',
+      changeOrigin: true,
+    },
+  },
 }
 
 

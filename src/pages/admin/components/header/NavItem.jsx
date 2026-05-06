@@ -14,12 +14,12 @@ const NavItem = ({
       to={link}
       className={`${
         name === activeNavName
-          ? "font-bold text-primary"
-          : "font-semibold text-[#A5A5A5]"
-      } flex items-center gap-x-2 py-2 text-lg`}
+          ? "bg-black text-white translate-x-[2px] translate-y-[2px] shadow-none"
+          : "bg-white text-black shadow-[4px_4px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+      } flex items-center gap-x-3 px-5 py-4 border-2 border-black font-black text-xs uppercase tracking-widest transition-all active:scale-95`}
       onClick={() => setActiveNavName(name)}
     >
-      {icon}
+      <span className="text-xl">{icon}</span>
       {title}
     </NavLink>
   );

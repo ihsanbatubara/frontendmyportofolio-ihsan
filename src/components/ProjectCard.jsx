@@ -1,41 +1,48 @@
 import React from 'react';
-import { images, stables } from '../constants'
-import { FaGithub, FaGlobe } from "react-icons/fa";
+import { images } from '../constants';
+import { FaGithub } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const ProjectCard = ({ post }) => {
     return (
-        <>
-            <div className="items" data-aos="fade-up">
-                <div className="left">
-                    <div className="img-project">
-                        <img src={
-                            post.photo
-                                ? post.photo
-                                : images.samplePostImage
-                        } alt="title" />
-                    </div>
-                </div>
-                <div className="rights">
-                    <h2 className="project-title"> {post.title}</h2>
-                    <p className="project-desc">{post.caption}</p>
-                    <div className="buttons">
-                        <a href={`${post.github}`} className="primary-btns">
-                            <FaGithub className="mr-2" /> Github
-                        </a>
-                        <a href={`${post.demo}`} className="primary-btns">
-                            <FaGlobe className="mr-2" /> Demo
-                        </a>
-                        <a href={`/projectall/${post.slug}`} className="primary-btns outline external-link">
-                            <span>Preview</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+        <div className="bg-white border-2 border-black rounded-[2rem] p-6 flex flex-col hover:shadow-[10px_10px_0px_#000] transition-all duration-300 w-full h-full shadow-[6px_6px_0px_#000]">
+            {/* Image Container */}
+            <div className="w-full aspect-video overflow-hidden rounded-2xl border-2 border-black mb-6">
+                <img 
+                    src={post.photo ? post.photo : images.samplePostImage} 
+                    alt={post.title} 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
             </div>
-            {/* ))} */}
-        </>
+            
+            {/* Content Area */}
+            <div className="flex flex-col flex-grow">
+                <span className="text-pink-500 font-bold text-sm mb-2">
+                    {post.categories?.[0]?.title || "Website Template"}
+                </span>
+                <h3 className="text-2xl font-black text-black mb-4 leading-tight">
+                    {post.title}
+                </h3>
+            </div>
+
+            {/* Footer Actions */}
+            <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                <Link 
+                    to={`/projectall/${post.slug}`} 
+                    className="text-black font-bold border-b-2 border-black hover:pb-1 transition-all"
+                >
+                    Visit
+                </Link>
+                <a 
+                    href={post.github || "#"} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-2xl text-black hover:scale-110 transition-transform"
+                >
+                    <FaGithub />
+                </a>
+            </div>
+        </div>
     );
 };
 

@@ -40,10 +40,12 @@ const AdminLayout = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen lg:flex-row">
+    <div className="flex flex-col min-h-screen lg:flex-row bg-[#f8f8f8] font-montserrat">
       <Header />
-      <main className="bg-black flex-1 p-4 lg:p-6">
-        <Outlet />
+      <main className="flex-1 p-4 lg:p-10">
+        <div className="max-w-6xl mx-auto">
+          <Outlet />
+        </div>
       </main>
     </div>
   );

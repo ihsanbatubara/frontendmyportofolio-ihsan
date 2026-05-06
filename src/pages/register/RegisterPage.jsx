@@ -71,15 +71,19 @@ const RegisterPage = () => {
   return (
     <MainLayout>
       <ToastContainer />
-      <section className="login container mx-auto px-5 py-10">
-        <div className="box-login w-full max-w-sm mx-auto">
-          <h1 className="font-roboto text-2xl font-bold text-center text-white mb-8">
-            Sign Up
-          </h1>
-          <form onSubmit={handleSubmit(submitHandler)}>
-            <div className="flex flex-col mb-6 w-full">
-              <label htmlFor="name" className="text-white font-semibold block">
-                Name
+      <section className="min-h-screen flex items-center justify-center bg-[#f8f8f8] py-20 px-6">
+        <div className="w-full max-w-md bg-white border-4 border-black rounded-[40px] p-10 shadow-[16px_16px_0px_rgba(0,0,0,0.1)]">
+          <div className="text-center mb-10">
+            <h1 className="text-4xl font-black text-black uppercase tracking-tighter mb-2">
+              Join Us
+            </h1>
+            <p className="text-gray-500 font-bold text-sm uppercase tracking-widest">Create your account</p>
+          </div>
+
+          <form onSubmit={handleSubmit(submitHandler)} className="space-y-6">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="name" className="text-xs font-black uppercase tracking-widest text-black px-1">
+                Full Name
               </label>
               <input
                 type="text"
@@ -88,18 +92,19 @@ const RegisterPage = () => {
                   required: "Name is required",
                   minLength: { value: 1, message: "Name must be at least 1 character" },
                 })}
-                placeholder="Enter name"
-                className={`placeholder:text-[#959ead] text-white mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
-                  errors.name ? "border-red-500" : "border-[#c3cad9]"
+                placeholder="John Doe"
+                className={`w-full bg-white border-2 border-black p-4 rounded-2xl font-bold text-black focus:outline-none focus:shadow-[4px_4px_0px_#000] transition-all placeholder:text-gray-300 ${
+                  errors.name ? "border-red-500 shadow-[4px_4px_0px_rgba(239,68,68,0.2)]" : ""
                 }`}
               />
               {errors.name?.message && (
-                <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>
+                <p className="text-red-500 text-[10px] font-black uppercase tracking-widest mt-1 px-1">{errors.name.message}</p>
               )}
             </div>
-            <div className="flex flex-col mb-6 w-full">
-              <label htmlFor="email" className="text-white font-semibold block">
-                Email
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="email" className="text-xs font-black uppercase tracking-widest text-black px-1">
+                Email Address
               </label>
               <input
                 type="email"
@@ -107,22 +112,22 @@ const RegisterPage = () => {
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
-                    value:
-                      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                     message: "Enter a valid email",
                   },
                 })}
-                placeholder="Enter email"
-                className={`placeholder:text-[#959ead] text-white mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
-                  errors.email ? "border-red-500" : "border-[#c3cad9]"
+                placeholder="you@example.com"
+                className={`w-full bg-white border-2 border-black p-4 rounded-2xl font-bold text-black focus:outline-none focus:shadow-[4px_4px_0px_#000] transition-all placeholder:text-gray-300 ${
+                  errors.email ? "border-red-500 shadow-[4px_4px_0px_rgba(239,68,68,0.2)]" : ""
                 }`}
               />
               {errors.email?.message && (
-                <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+                <p className="text-red-500 text-[10px] font-black uppercase tracking-widest mt-1 px-1">{errors.email.message}</p>
               )}
             </div>
-            <div className="flex flex-col mb-6 w-full">
-              <label htmlFor="password" className="text-white font-semibold block">
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="password" className="text-xs font-black uppercase tracking-widest text-black px-1">
                 Password
               </label>
               <input
@@ -132,17 +137,18 @@ const RegisterPage = () => {
                   required: "Password is required",
                   minLength: { value: 6, message: "Password must be at least 6 characters" },
                 })}
-                placeholder="Enter password"
-                className={`placeholder:text-[#959ead] text-white mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
-                  errors.password ? "border-red-500" : "border-[#c3cad9]"
+                placeholder="••••••••"
+                className={`w-full bg-white border-2 border-black p-4 rounded-2xl font-bold text-black focus:outline-none focus:shadow-[4px_4px_0px_#000] transition-all placeholder:text-gray-300 ${
+                  errors.password ? "border-red-500 shadow-[4px_4px_0px_rgba(239,68,68,0.2)]" : ""
                 }`}
               />
               {errors.password?.message && (
-                <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+                <p className="text-red-500 text-[10px] font-black uppercase tracking-widest mt-1 px-1">{errors.password.message}</p>
               )}
             </div>
-            <div className="flex flex-col mb-6 w-full">
-              <label htmlFor="confirmPassword" className="text-white font-semibold block">
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="confirmPassword" className="text-xs font-black uppercase tracking-widest text-black px-1">
                 Confirm Password
               </label>
               <input
@@ -150,30 +156,34 @@ const RegisterPage = () => {
                 id="confirmPassword"
                 {...register("confirmPassword", {
                   required: "Confirm password is required",
-                  validate: (value) => value === password || "Passwords do not match",
+                  validate: (value) => value === watch("password") || "Passwords do not match",
                 })}
-                placeholder="Enter confirm password"
-                className={`placeholder:text-[#959ead] text-white mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
-                  errors.confirmPassword ? "border-red-500" : "border-[#c3cad9]"
+                placeholder="••••••••"
+                className={`w-full bg-white border-2 border-black p-4 rounded-2xl font-bold text-black focus:outline-none focus:shadow-[4px_4px_0px_#000] transition-all placeholder:text-gray-300 ${
+                  errors.confirmPassword ? "border-red-500 shadow-[4px_4px_0px_rgba(239,68,68,0.2)]" : ""
                 }`}
               />
               {errors.confirmPassword?.message && (
-                <p className="text-red-500 text-xs mt-1">{errors.confirmPassword.message}</p>
+                <p className="text-red-500 text-[10px] font-black uppercase tracking-widest mt-1 px-1">{errors.confirmPassword.message}</p>
               )}
             </div>
+
             <button
               type="submit"
               disabled={!isValid || isLoading}
-              className="button-sign text-white font-bold text-lg py-4 px-8 w-full rounded-lg mb-6 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full bg-black text-white font-black uppercase py-5 rounded-2xl border-2 border-black shadow-[8px_8px_0px_rgba(0,0,0,0.3)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all active:scale-[0.98] disabled:opacity-50 mt-4"
             >
-              {isLoading ? "Registering..." : "Register"}
+              {isLoading ? "Registering..." : "Create Account"}
             </button>
-            <p className="text-sm font-semibold text-white">
-              Already have an account?{" "}
-              <Link to="/login" className="text-register">
-                Login now
-              </Link>
-            </p>
+
+            <div className="text-center pt-4">
+              <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">
+                Already have an account?{" "}
+                <Link to="/login" className="text-black font-black border-b-2 border-black ml-1">
+                  Login
+                </Link>
+              </p>
+            </div>
           </form>
         </div>
       </section>

@@ -3,17 +3,11 @@ import React from 'react'
 
 const Footer = () => {
   return (
-        <footer className="footer">
-            <p className="footer__title">Tio Fulalo Simatupang</p>
-            <div className="footer__social">
-                <a href="#" className="footer__icon"><i className='bx bxl-facebook' ></i></a>
-                <a href="#" className="footer__icon"><i className='bx bxl-instagram' ></i></a>
-                <a href="#" className="footer__icon"><i className='bx bxl-twitter' ></i></a>
-            </div>
-            <p className="footer__copy">&#169; Lalo. All rigths reserved</p>
-        </footer>
-
-    
+    <footer className="w-full py-10 border-t-2 border-black/5">
+      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 font-medium">
+        {/* Minimalist footer placeholder */}
+      </div>
+    </footer>
   )
 }
 

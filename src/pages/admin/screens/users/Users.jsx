@@ -93,58 +93,47 @@ const Users = () => {
       userState={userState}
     >
       {usersData?.data.map((user) => (
-        <tr key={user._id}>
-          <td className="px-5 py-5 text-sm border-b border-gray-200">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <a href="/">
-                  <img
-                    src={
-                      user?.avatar
-                        ? user?.avatar
-                        : "/images/user.png"
-                    }
-                    alt={user?.name || "Default User"}
-                    className="mx-auto object-cover rounded-lg w-10 aspect-square"
-                  />
-                </a>
-              </div>
-              <div className="ml-3">
-                <p className="text-gray-900 whitespace-no-wrap">{user.name}</p>
-              </div>
+        <tr key={user._id} className="hover:bg-gray-50 transition-colors group">
+          <td className="px-6 py-4">
+            <div className="flex items-center gap-4">
+              <img
+                src={user?.avatar ? user?.avatar : "/images/user.png"}
+                alt={user?.name || "Default User"}
+                className="w-12 h-12 rounded-xl object-cover border-2 border-black shadow-[2px_2px_0px_#000]"
+              />
+              <span className="font-bold text-black group-hover:underline underline-offset-4 decoration-2">
+                {user.name}
+              </span>
             </div>
           </td>
-          <td className="px-5 py-5 text-sm border-b border-gray-200">
-            <p className="text-gray-900 whitespace-no-wrap">{user.email}</p>
+          <td className="px-6 py-4">
+            <span className="text-sm font-bold text-gray-500">{user.email}</span>
           </td>
-          <td className="px-5 py-5 text-sm border-b border-gray-200">
-            <p className="text-gray-900 whitespace-no-wrap">
-              {new Date(user.createdAt).toLocaleDateString("en-US", {
-                day: "numeric",
-                month: "short",
-                year: "numeric",
-              })}
-            </p>
+          <td className="px-6 py-4 font-bold text-gray-600 text-sm">
+            {new Date(user.createdAt).toLocaleDateString("en-GB", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+            })}
           </td>
-          <td className="px-5 py-5 text-sm border-b border-gray-200">
-            <p className="text-gray-900 whitespace-no-wrap">
-              {user.verified ? "✅" : "❌"}
-            </p>
+          <td className="px-6 py-4">
+            <span className={`inline-block px-3 py-1 rounded-full border-2 border-black font-black text-[10px] uppercase ${user.verified ? "bg-green-400" : "bg-red-400"}`}>
+              {user.verified ? "Verified" : "Unverified"}
+            </span>
           </td>
-          <td className="px-5 py-5 text-sm border-b border-gray-200">
+          <td className="px-6 py-4">
             <input
               type="checkbox"
-              className="d-checkbox disabled:bg-orange-400 disabled:opacity-100 checked:bg-[url('../public/images/check.png')] bg-cover checked:disabled:bg-none"
+              className="w-5 h-5 border-2 border-black rounded bg-white checked:bg-black transition-all cursor-pointer"
               defaultChecked={user.admin}
               onChange={(event) => handleAdminCheck(event, user._id)}
               disabled={isLoadingUpdateUser}
             />
           </td>
-          <td className="px-5 py-5 text-sm border-b border-gray-200 space-x-5">
+          <td className="px-6 py-4">
             <button
               disabled={isLoadingDeleteData}
-              type="button"
-              className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-md text-sm font-medium transition disabled:opacity-50"
+              className="bg-white text-red-600 px-4 py-2 rounded-lg font-bold text-xs border-2 border-red-600 shadow-[2px_2px_0px_rgba(220,38,38,0.3)] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] transition-all disabled:opacity-50"
               onClick={() => {
                 deleteDataHandler({
                   slug: user?._id,

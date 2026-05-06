@@ -15,83 +15,96 @@ const DataTable = ({
   setCurrentPage,
   currentPage,
   headers,
+  actionButton,
 }) => {
   return (
-    <div>
-      <h1 className="text-2xl font-semibold">{pageTitle}</h1>
-
-      <div className="w-full px-4 mx-auto">
-        <div className="py-8">
-          <div className="flex flex-row justify-between w-full mb-1 sm:mb-0">
-            <h2 className="text-2xl leading-tight">{dataListName}</h2>
-            <div className="text-end overflow-hidden">
-              <form
-                onSubmit={searchKeywordOnSubmitHandler}
-                className="flex flex-col justify-center w-3/4 max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0"
-              >
-                <div className=" relative ">
-                  <input
-                    type="text"
-                    id='"form-subscribe-Filter'
-                    className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                    placeholder={searchInputPlaceHolder}
-                    onChange={searchKeywordOnChangeHandler}
-                    value={searchKeyword}
-                  />
-                </div>
-                <button
-                  className="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200"
-                  type="submit"
-                >
-                  Filter
-                </button>
-              </form>
-            </div>
+    <div className="flex flex-col gap-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 w-full md:w-auto">
+          <div>
+            <h1 className="text-4xl font-black text-black uppercase tracking-tight mb-2">
+              {pageTitle}
+            </h1>
+            <p className="text-gray-500 font-bold text-sm uppercase tracking-widest">
+              {dataListName} Management
+            </p>
           </div>
-          <div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
-            <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
-              <table className="min-w-full leading-normal">
-                <thead>
-                  <tr>
-                    {tableHeaderTitleList.map((title, index) => (
-                      <th
-                        key={index}
-                        scope="col"
-                        className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
-                      >
-                        {title}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {isLoading || isFetching ? (
-                    <tr>
-                      <td colSpan={5} className="text-center text-white py-10 w-full">
-                        Loading...
-                      </td>
-                    </tr>
-                  ) : data?.length === 0 ? (
-                    <tr>
-                      <td colSpan={5} className="text-center py-10 w-full text-white">
-                        No records found
-                      </td>
-                    </tr>
-                  ) : (
-                    children
-                  )}
-                </tbody>
-              </table>
-              {!isLoading && (
-                <Pagination
-                  onPageChange={(page) => setCurrentPage(page)}
-                  currentPage={currentPage}
-                  totalPageCount={JSON.parse(headers?.["x-totalpagecount"])}
-                />
-              )}
+          {actionButton && (
+            <div className="mt-4 md:mt-0">
+              {actionButton}
             </div>
-          </div>
+          )}
         </div>
+
+        <div className="w-full md:w-auto">
+          <form
+            onSubmit={searchKeywordOnSubmitHandler}
+            className="flex gap-3"
+          >
+            <div className="relative flex-1 md:w-64">
+              <input
+                type="text"
+                className="w-full bg-white border-2 border-black px-4 py-3 rounded-xl font-bold text-black placeholder-gray-400 focus:outline-none focus:shadow-[4px_4px_0px_#000] transition-all"
+                placeholder={searchInputPlaceHolder}
+                onChange={searchKeywordOnChangeHandler}
+                value={searchKeyword}
+              />
+            </div>
+            <button
+              className="bg-black text-white px-6 py-3 rounded-xl font-black uppercase text-sm border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,0.3)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+              type="submit"
+            >
+              Filter
+            </button>
+          </form>
+        </div>
+
+      <div className="bg-white border-4 border-black rounded-3xl overflow-hidden shadow-[12px_12px_0px_rgba(0,0,0,0.1)]">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-black text-white">
+                {tableHeaderTitleList.map((title, index) => (
+                  <th
+                    key={index}
+                    className="px-6 py-5 text-xs font-black uppercase tracking-widest border-r border-white/20 last:border-0"
+                  >
+                    {title}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y-2 divide-black/5">
+              {isLoading || isFetching ? (
+                <tr>
+                  <td colSpan={tableHeaderTitleList.length} className="text-center py-20">
+                    <div className="flex flex-col items-center gap-4">
+                      <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin"></div>
+                      <span className="font-black uppercase text-xs tracking-widest">Loading Data...</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : data?.length === 0 ? (
+                <tr>
+                  <td colSpan={tableHeaderTitleList.length} className="text-center py-20">
+                    <span className="font-black uppercase text-xs tracking-widest text-gray-400">No records found</span>
+                  </td>
+                </tr>
+              ) : (
+                children
+              )}
+            </tbody>
+          </table>
+        </div>
+        
+        {!isLoading && headers?.["x-totalpagecount"] && (
+          <div className="p-6 border-t-2 border-black bg-gray-50">
+            <Pagination
+              onPageChange={(page) => setCurrentPage(page)}
+              currentPage={currentPage}
+              totalPageCount={JSON.parse(headers?.["x-totalpagecount"])}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

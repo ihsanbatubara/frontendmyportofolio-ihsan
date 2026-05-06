@@ -4,8 +4,9 @@ import { toast } from "react-hot-toast";
 import { useDataTable } from "../../../../hooks/useDataTable";
 import { deleteComment, getAllComments, updateComment } from "../../../../services/index/comments";
 import DataTable from "../../components/DataTable";
-import { images, stables } from "../../../../constants";
+import { images } from "../../../../constants";
 import { Link } from "react-router-dom";
+import { FiCheckCircle, FiXCircle, FiTrash2, FiMessageSquare } from "react-icons/fi";
 
 const Comments = () => {
   const {
@@ -36,7 +37,6 @@ const Comments = () => {
     },
     onError: (error) => {
       toast.error(error.message);
-      console.log(error);
     },
   });
 
@@ -48,60 +48,106 @@ const Comments = () => {
       searchKeywordOnSubmitHandler={submitSearchKeywordHandler}
       searchKeywordOnChangeHandler={searchKeywordHandler}
       searchKeyword={searchKeyword}
-      tableHeaderTitleList={["Author", "Comment", "In Respond to", "Created At", "Actions"]}
+      tableHeaderTitleList={["Author", "Comment Content", "Responsive To", "Date", "Actions"]}
       isFetching={isFetching}
       isLoading={isLoading}
       data={commentsData?.data}
       setCurrentPage={setCurrentPage}
       currentPage={currentPage}
       headers={commentsData?.headers}
-      tableClassName="table-auto w-full border-collapse border border-gray-200 rounded-lg shadow-lg overflow-hidden"
     >
       {commentsData?.data.map((comment) => (
-        <tr key={comment._id} className="border-b hover:bg-purple-600 transition duration-200">
-          <td className="px-6 py-4 text-sm flex items-center">
-            <img
-              src={comment?.user?.avatar ? `${comment?.user?.avatar}` : images.userImage}
-              alt={comment?.user?.name}
-              className="w-10 h-10 rounded-full mr-3 object-cover"
-            />
-            <p className="font-medium text-gray-900">{comment?.user?.name}</p>
+        <tr key={comment._id} className="group hover:bg-gray-50 transition-colors">
+          {/* Author */}
+          <td className="px-6 py-6 border-r border-black/5 last:border-0">
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                 <div className="absolute inset-0 bg-black rounded-full translate-x-[2px] translate-y-[2px]"></div>
+                 <img
+                   src={comment?.user?.avatar ? comment.user.avatar : images.userImage}
+                   alt={comment?.user?.name}
+                   className="relative w-12 h-12 rounded-full border-2 border-black object-cover bg-white"
+                 />
+              </div>
+              <div>
+                <p className="font-black text-sm uppercase tracking-tight text-black">{comment?.user?.name}</p>
+                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">{comment?.user?.email?.split('@')[0]}</p>
+              </div>
+            </div>
           </td>
-          <td className="px-6 py-4 text-sm text-gray-700">
+
+          {/* Comment Body */}
+          <td className="px-6 py-6 border-r border-black/5 last:border-0 max-w-xs">
             {comment?.replyOnUser && (
-              <p className="text-gray-500 text-xs">
-                In reply to <Link to={`/blog/${comment?.post?.slug}/#comment-${comment?._id}`} className="text-blue-500 font-medium">{comment?.replyOnUser?.name}</Link>
-              </p>
+              <div className="flex items-center gap-1 mb-1 bg-yellow-100 border border-black/10 w-fit px-2 py-0.5 rounded-md">
+                <FiMessageSquare className="text-[10px]" />
+                <span className="text-[10px] font-black uppercase">To: {comment?.replyOnUser?.name}</span>
+              </div>
             )}
-            <p>{comment?.desc}</p>
+            <p className="text-sm font-medium text-gray-800 line-clamp-3 leading-relaxed">
+              {comment?.desc}
+            </p>
           </td>
-          <td className="px-6 py-4 text-sm text-blue-600 font-medium">
-            <Link to={`/blog/${comment?.post?.slug}`} className="hover:underline">{comment?.post?.title}</Link>
-          </td>
-          <td className="px-6 py-4 text-sm text-white">
-            {new Date(comment.createdAt).toLocaleDateString("en-US", {
-              day: "2-digit",
-              month: "2-digit",
-              year: "2-digit",
-              hour: "numeric",
-              minute: "numeric",
-            })}
-          </td>
-          <td className="px-6 py-4 text-sm flex space-x-3">
-            <button
-              disabled={isLoadingUpdateCommentCheck}
-              className={`px-3 py-2 text-white text-xs font-semibold rounded-lg transition duration-200 ${comment?.check ? "bg-yellow-500 hover:bg-yellow-600" : "bg-green-600 hover:bg-green-700"} disabled:opacity-70`}
-              onClick={() => mutateUpdateCommentCheck({ token: userState.userInfo.token, check: !comment?.check, commentId: comment._id })}
+
+          {/* In Response To */}
+          <td className="px-6 py-6 border-r border-black/5 last:border-0">
+            <Link 
+              to={`/projectall/${comment?.post?.slug}`} 
+              className="group/link flex flex-col gap-1 max-w-[200px]"
             >
-              {comment?.check ? "Unapprove" : "Approve"}
-            </button>
-            <button
-              disabled={isLoadingDeleteData}
-              className="px-3 py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-semibold rounded-lg transition duration-200 disabled:opacity-70"
-              onClick={() => deleteDataHandler({ slug: comment?._id, token: userState.userInfo.token })}
-            >
-              Delete
-            </button>
+              <span className="text-xs font-black text-black uppercase tracking-tight group-hover/link:underline decoration-2">
+                {comment?.post?.title}
+              </span>
+              <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">
+                View Project →
+              </span>
+            </Link>
+          </td>
+
+          {/* Date */}
+          <td className="px-6 py-6 border-r border-black/5 last:border-0 whitespace-nowrap">
+            <div className="flex flex-col">
+              <span className="text-sm font-black text-black">
+                {new Date(comment.createdAt).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })}
+              </span>
+              <span className="text-[10px] font-bold text-gray-400 uppercase">
+                {new Date(comment.createdAt).toLocaleTimeString("en-GB", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </span>
+            </div>
+          </td>
+
+          {/* Actions */}
+          <td className="px-6 py-6 border-r border-black/5 last:border-0">
+            <div className="flex items-center gap-3">
+              <button
+                disabled={isLoadingUpdateCommentCheck}
+                onClick={() => mutateUpdateCommentCheck({ token: userState.userInfo.token, check: !comment?.check, commentId: comment._id })}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl font-black uppercase text-[10px] border-2 border-black transition-all shadow-[4px_4px_0px_#000] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] disabled:opacity-50
+                  ${comment?.check 
+                    ? "bg-amber-400 hover:bg-amber-500 text-black" 
+                    : "bg-emerald-400 hover:bg-emerald-500 text-black"
+                  }`}
+              >
+                {comment?.check ? <FiXCircle size={14} /> : <FiCheckCircle size={14} />}
+                {comment?.check ? "Reject" : "Approve"}
+              </button>
+
+              <button
+                disabled={isLoadingDeleteData}
+                onClick={() => deleteDataHandler({ slug: comment?._id, token: userState.userInfo.token })}
+                className="flex items-center justify-center p-2.5 bg-rose-500 hover:bg-rose-600 text-white rounded-xl border-2 border-black shadow-[4px_4px_0px_#000] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all disabled:opacity-50"
+                title="Delete Comment"
+              >
+                <FiTrash2 size={16} />
+              </button>
+            </div>
           </td>
         </tr>
       ))}

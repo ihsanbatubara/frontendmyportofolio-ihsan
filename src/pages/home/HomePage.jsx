@@ -6,6 +6,7 @@ import Skills from './container/Skills'
 import Project from './container/Project'
 import Contact from './container/Contact'
 import Articles from './container/Articles'
+import Transition from '../../components/Transition'
 
 
 const HomePage = () => {
@@ -16,9 +17,9 @@ const HomePage = () => {
        <Skills /> 
        {/* <Project /> */}
        <Articles />
-       <Contact /> 
+       {/* <Contact /> */}
     </MainLayout>
   )
 }
 
-export default HomePage
+export default Transition(HomePage)
