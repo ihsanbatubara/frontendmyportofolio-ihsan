@@ -12,8 +12,9 @@ const Comment = ({
   parentId = null,
   updateComment,
   deleteComment,
-  replies,
+  replies = [],
 }) => {
+
   const isUserLoggined = Boolean(logginedUserId);
   const commentBelongsToUser = logginedUserId === comment.user._id;
   const isReplying =
@@ -73,17 +74,18 @@ const Comment = ({
         )}
 
         <div className="flex flex-wrap items-center gap-4 text-xs mt-6">
-          {isUserLoggined && (
-            <button
-              className="flex items-center space-x-1 font-black uppercase tracking-widest text-black hover:text-yellow-500 transition"
-              onClick={() =>
-                setAffectedComment({ type: "replying", _id: comment._id })
-              }
-            >
-              <FiMessageSquare className="w-4 h-4" />
-              <span>Reply</span>
-            </button>
-          )}
+          <button
+            className="flex items-center space-x-1 font-black uppercase tracking-widest text-black hover:text-yellow-500 transition"
+            onClick={() =>
+              isUserLoggined
+                ? setAffectedComment({ type: "replying", _id: comment._id })
+                : toast.error("Please login to reply")
+            }
+          >
+            <FiMessageSquare className="w-4 h-4" />
+            <span>Reply</span>
+          </button>
+
           {commentBelongsToUser && (
             <>
               <button

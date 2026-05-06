@@ -23,6 +23,8 @@ const Header = () => {
 
   const navLinks = ['home', 'about', 'skills', 'project', 'contact'];
 
+
+
   return (
     <header className="relative w-full px-6 py-5 flex items-center justify-between max-w-7xl mx-auto z-50 bg-transparent">
 

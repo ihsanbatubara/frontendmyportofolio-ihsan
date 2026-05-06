@@ -20,6 +20,11 @@ import ManageExperiences from './pages/admin/screens/experiences/ManageExperienc
 import EditExperience from './pages/admin/screens/experiences/EditExperience';
 import ResumeManage from './pages/admin/screens/ResumeManage';
 import Users from "./pages/admin/screens/users/Users";
+import ManageCertificates from './pages/admin/screens/certificates/ManageCertificates';
+import EditCertificate from './pages/admin/screens/certificates/EditCertificate';
+
+
+
 
 import ArticleDetailPage from './pages/articleDetail/ArticleDetailPage';
 import Aos from "aos";
@@ -57,6 +62,8 @@ function App() {
           <Route path='/about' element={<AboutPage />} />
           <Route path='/skills' element={<SkillsPage />} />
           <Route path='/contact' element={<ContactPage />} />
+
+
           <Route path='/login' element={<LoginWithTransition />} />
           <Route path='/register' element={<RegisterWithTransition />} />
           <Route path='/profile' element={<ProfileWithTransition />} />
@@ -73,7 +80,10 @@ function App() {
             <Route path='categories/manage/edit/:slug' element={<EditCategories />} />
             <Route path='experiences/manage' element={<ManageExperiences />} />
             <Route path='experiences/manage/edit/:id' element={<EditExperience />} />
+            <Route path='certificates/manage' element={<ManageCertificates />} />
+            <Route path='certificates/manage/edit/:id' element={<EditCertificate />} />
             <Route path='resume/manage' element={<ResumeManage />} />
+
             <Route path='users/manage' element={<Users />} />
           </Route>
         </Routes>

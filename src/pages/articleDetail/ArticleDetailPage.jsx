@@ -73,13 +73,14 @@ const ArticleDetailPage = () => {
                 {data?.categories.map((category, index) => (
                   <Link
                     key={index}
-                    to={`/project?category=${category.name}`}
+                    to={`/project?category=${category.title}`}
                     className="bg-yellow-300 border-2 border-black px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest text-black shadow-[3px_3px_0px_#000] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
                   >
-                    {category.name}
+                    {category.title}
                   </Link>
                 ))}
               </div>
+
 
               {/* Project Title */}
               <h1 className="text-4xl md:text-6xl font-black text-black uppercase tracking-tighter leading-tight mb-10">
@@ -100,11 +101,12 @@ const ArticleDetailPage = () => {
               <div className="mt-20 border-t-4 border-black pt-16">
                 <h3 className="text-3xl font-black text-black uppercase tracking-tight mb-10">Feedback & Comments</h3>
                 <CommentsContainer
-                  comments={data?.comments}
+                  comments={data?.comments || []}
                   className="mt-10"
                   logginedUserId={userState?.userInfo?._id}
                   postSlug={slug}
                 />
+
               </div>
             </article>
 

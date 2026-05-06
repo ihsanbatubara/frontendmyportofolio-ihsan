@@ -59,7 +59,8 @@ const Categories = () => {
     <div className="p-2 lg:p-6 min-h-screen font-montserrat">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
         {/* Add New Category Card */}
-        <div className="col-span-1 md:col-span-4 bg-white p-8 border-4 border-black rounded-[40px] shadow-[12px_12px_0px_#000] sticky top-10">
+        <div className="col-span-1 md:col-span-4 bg-white p-8 border-4 border-black rounded-[40px] shadow-[12px_12px_0px_#000] md:sticky md:top-10">
+
           <h4 className="text-2xl font-black uppercase tracking-tight text-black mb-8 underline decoration-yellow-300 decoration-4 underline-offset-8">
             Add New Category
           </h4>

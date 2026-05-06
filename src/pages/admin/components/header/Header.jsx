@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useWindowSize } from "@uidotdev/usehooks";
 import { useEffect, useState } from "react";
 import { AiFillDashboard, AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { FaComments, FaUser, FaBriefcase, FaFilePdf } from "react-icons/fa";
+import { FaComments, FaUser, FaBriefcase, FaFilePdf, FaAward } from "react-icons/fa";
+
 
 
 import { MdDashboard } from "react-icons/md";
@@ -111,6 +112,8 @@ const Header = () => {
 
                 <NavItem title="Comments" link="/admin/comments" icon={<FaComments />} name="comments" activeNavName={activeNavName} setActiveNavName={setActiveNavName} />
                 <NavItem title="Experience" link="/admin/experiences/manage" icon={<FaBriefcase />} name="experiences" activeNavName={activeNavName} setActiveNavName={setActiveNavName} />
+                <NavItem title="Certificates" link="/admin/certificates/manage" icon={<FaAward />} name="certificates" activeNavName={activeNavName} setActiveNavName={setActiveNavName} />
+
                 <NavItem title="Resume" link="/admin/resume/manage" icon={<FaFilePdf />} name="resume" activeNavName={activeNavName} setActiveNavName={setActiveNavName} />
                 <NavItem title="Users" link="/admin/users/manage" icon={<FaUser />} name="users" activeNavName={activeNavName} setActiveNavName={setActiveNavName} />
 

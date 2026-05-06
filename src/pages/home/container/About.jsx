@@ -3,6 +3,8 @@ import pictureAbout from '../../../assets/about.png';
 import { useQuery } from '@tanstack/react-query';
 import { getAllExperiences } from '../../../services/index/experiences';
 import ArticleCardSkeleton from '../../../components/ArticleCardSkeleton';
+import Certificates from './Certificates';
+
 
 const About = () => {
   const { data: experiences, isLoading, isError } = useQuery({
@@ -11,7 +13,8 @@ const About = () => {
   });
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-6 pt-16" id="about">
+    <section className="w-full max-w-7xl mx-auto px-6 pt-16 pb-32" id="about">
+
 
       {/* Huge Heading */}
       <div className="w-full flex justify-center mb-16 md:mb-24">
@@ -129,7 +132,11 @@ const About = () => {
           )}
         </div>
       </div>
+
+      {/* Certificates Section */}
+      <Certificates />
     </section>
+
   );
 };
 
