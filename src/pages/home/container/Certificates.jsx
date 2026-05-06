@@ -22,7 +22,7 @@ const Certificates = () => {
   }, [currentPage]);
 
   return (
-    <div className="mt-32">
+    <div className="mt-15">
       <h2 data-aos="fade-down" className="text-5xl md:text-8xl font-black text-[#1a1a1a] mb-16 text-center uppercase tracking-tighter">
         Certificates
       </h2>
@@ -47,7 +47,7 @@ const Certificates = () => {
         <div className="flex flex-col items-center">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full mb-16">
             {certData?.data?.map((cert, index) => (
-              <div 
+              <div
                 key={cert._id}
                 data-aos="fade-down"
                 data-aos-delay={index * 100}
@@ -56,9 +56,9 @@ const Certificates = () => {
                 {/* Image Thumbnail */}
                 <div className="relative aspect-[4/3] rounded-[28px] overflow-hidden border-2 border-black mb-6 bg-gray-50">
                   {cert.photo ? (
-                    <img 
-                      src={cert.photo} 
-                      alt={cert.title} 
+                    <img
+                      src={cert.photo}
+                      alt={cert.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                   ) : (
@@ -78,7 +78,7 @@ const Certificates = () => {
                       Verified
                     </span>
                   </div>
-                  
+
                   <h3 className="text-xl font-black text-black leading-tight group-hover:text-yellow-500 transition-colors uppercase">
                     {cert.title}
                   </h3>
@@ -95,7 +95,7 @@ const Certificates = () => {
                   </div>
 
                   {cert.link && (
-                    <a 
+                    <a
                       href={cert.link}
                       target="_blank"
                       rel="noopener noreferrer"
