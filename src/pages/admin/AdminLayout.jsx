@@ -33,11 +33,28 @@ const AdminLayout = () => {
 
   if (profileIsLoading) {
     return (
-      <div className="w-full h-screen flex justify-center items-center">
-        <h3 className="text-2xl text-white">Loading...</h3>
+      <div className="w-full h-screen flex flex-col justify-center items-center bg-[#f8f8f8]">
+        <div className="relative">
+          {/* Brutalist Spinner */}
+          <div className="w-20 h-20 border-8 border-black border-t-yellow-400 rounded-full animate-spin shadow-[8px_8px_0px_rgba(0,0,0,0.1)]"></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-6 h-6 bg-black rounded-full animate-pulse"></div>
+          </div>
+        </div>
+        <div className="mt-8 flex flex-col items-center gap-2">
+          <h3 className="text-2xl font-black uppercase tracking-tighter text-black">
+            Authorizing
+          </h3>
+          <div className="flex gap-1">
+            <div className="w-2 h-2 bg-black rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+            <div className="w-2 h-2 bg-black rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+            <div className="w-2 h-2 bg-black rounded-full animate-bounce"></div>
+          </div>
+        </div>
       </div>
     );
   }
+
 
   return (
     <div className="flex flex-col min-h-screen lg:flex-row bg-[#f8f8f8] font-montserrat">
