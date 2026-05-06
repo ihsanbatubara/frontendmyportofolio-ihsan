@@ -43,7 +43,9 @@ const About = () => {
 
         {/* Center: Brutalist Profile Card */}
         <div className="flex justify-center order-1 md:order-2">
-          <div className="relative">
+          <div className="relative -translate-x-3 md:translate-x-0">
+
+
             {/* The Hard Shadow Background */}
             <div className="absolute top-4 left-4 w-full h-full bg-black rounded-3xl -z-10"></div>
             {/* The Main Card */}

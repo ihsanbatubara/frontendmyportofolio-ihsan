@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../store/actions/user';
-import { FaTwitter, FaGithub, FaLinkedin, FaDribbble, FaMoon, FaBars, FaTimes, FaPinterest } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram, FaBars, FaTimes } from 'react-icons/fa';
+
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,13 +26,13 @@ const Header = () => {
   return (
     <header className="relative w-full px-6 py-5 flex items-center justify-between max-w-7xl mx-auto z-50 bg-transparent">
 
-      {/* Mobile Menu Button */}
-      <button className="md:hidden text-2xl z-50" onClick={toggleMenu}>
+      {/* Mobile Menu Button - Appears at lg (1024px) and below */}
+      <button className="lg:hidden text-2xl z-50" onClick={toggleMenu}>
         {menuOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      {/* Left: Desktop Navigation */}
-      <nav className="hidden md:flex items-center gap-8 font-medium">
+      {/* Left: Desktop Navigation - Hidden at lg (1024px) and below */}
+      <nav className="hidden lg:flex items-center gap-8 font-medium">
         {navLinks.map((item) => (
           <Link
             key={item}
@@ -43,38 +44,27 @@ const Header = () => {
         ))}
       </nav>
 
-      {/* Logo */}
-      <div className="absolute left-[48%] md:left-1/2 -translate-x-1/2 top-4 md:top-2 z-50">
-
+      {/* Logo - Centered on all, but adjust responsive positioning */}
+      <div className="absolute left-[48%] lg:left-1/2 -translate-x-1/2 top-4 lg:top-2 z-50">
         <Link
-          className="flex items-center justify-center rounded-full w-12 h-12 md:w-16 md:h-16 bg-black text-white border-2 border-solid border-black text-xl md:text-2xl font-bold shadow-[4px_4px_0px_rgba(0,0,0,0.2)] hover:scale-110 transition-transform"
+          className="flex items-center justify-center rounded-full w-12 h-12 lg:w-16 lg:h-16 bg-black text-white border-2 border-solid border-black text-xl lg:text-2xl font-bold shadow-[4px_4px_0px_rgba(0,0,0,0.2)] hover:scale-110 transition-transform"
           to="/"
         >
           CB
         </Link>
       </div>
 
-
-
-
-
       {/* Right: Social Icons & User Auth */}
       <div className="flex items-center gap-4 text-xl">
         <div className="hidden lg:flex items-center gap-5">
-          <a href="#" className="text-[#1DA1F2] hover:-translate-y-1 transition-transform text-3xl">
-            <FaTwitter />
-          </a>
           <a href="https://github.com/lalosianturi21" target="_blank" rel="noopener noreferrer" className="bg-black text-white rounded-full p-1.5 hover:-translate-y-1 transition-transform text-xl flex items-center justify-center w-9 h-9">
             <FaGithub />
           </a>
           <a href="https://www.linkedin.com/in/tio-fulalo-simatupang-5b9547210/" target="_blank" rel="noopener noreferrer" className="bg-[#0077B5] text-white rounded-md p-1.5 hover:-translate-y-1 transition-transform text-xl flex items-center justify-center w-9 h-9">
             <FaLinkedin />
           </a>
-          <a href="#" className="bg-[#E60023] text-white rounded-full p-1.5 hover:-translate-y-1 transition-transform text-xl flex items-center justify-center w-9 h-9">
-            <FaPinterest />
-          </a>
-          <a href="#" className="bg-[#EA4C89] text-white rounded-full p-1.5 hover:-translate-y-1 transition-transform text-xl flex items-center justify-center w-9 h-9">
-            <FaDribbble />
+          <a href="https://instagram.com/tio_fulalo" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white rounded-lg p-1.5 hover:-translate-y-1 transition-transform text-xl flex items-center justify-center w-9 h-9">
+            <FaInstagram />
           </a>
         </div>
 
@@ -105,7 +95,7 @@ const Header = () => {
 
       {/* Mobile Menu Overlay */}
       {menuOpen && (
-        <div className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-8 md:hidden">
+        <div className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-8 lg:hidden">
           {navLinks.map((item) => (
             <Link
               key={item}
@@ -117,9 +107,9 @@ const Header = () => {
             </Link>
           ))}
           <div className="flex items-center gap-6 text-3xl mt-4">
-            <a href="#" className="text-blue-500"><FaTwitter /></a>
             <a href="https://github.com/lalosianturi21" className="text-black"><FaGithub /></a>
             <a href="https://www.linkedin.com/in/tio-fulalo-simatupang-5b9547210/" className="text-blue-700"><FaLinkedin /></a>
+            <a href="https://instagram.com/tio_fulalo" className="text-pink-600"><FaInstagram /></a>
           </div>
         </div>
       )}
