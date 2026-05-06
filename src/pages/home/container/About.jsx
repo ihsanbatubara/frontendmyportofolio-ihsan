@@ -11,7 +11,8 @@ const About = () => {
   });
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-6 py-20" id="about">
+    <section className="w-full max-w-7xl mx-auto px-6 pt-20 pb-10" id="about">
+
       {/* Huge Heading */}
       <div className="w-full flex justify-center mb-16 md:mb-24">
         <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#1a1a1a] uppercase tracking-tight text-center">
