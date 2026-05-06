@@ -42,13 +42,12 @@ const Articles = () => {
     return (
         <section className="w-full bg-[#f8f8f8] py-24 px-6">
             <div className="max-w-7xl mx-auto flex flex-col items-center">
-                
+
                 {/* Header Area */}
                 <div className="w-full text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-extrabold text-black uppercase tracking-tight mb-4">
-                        Imagination Trumps Knowledge!
-                    </h2>
+                    <h2 className="text-4xl md:text-5xl font-black text-black uppercase mb-6 leading-tight">Imagination Trumps <br />Knowledge</h2>
                 </div>
+
 
                 {/* Featured Project - Only on Page 1 or if not on project page */}
                 {!isLoading && featuredPost && (
