@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 const FeaturedProjectCard = ({ post }) => {
     return (
-        <div className="w-full bg-white border-2 border-black rounded-[2.5rem] p-4 md:p-8 flex flex-col md:flex-row gap-8 shadow-[12px_12px_0px_#000] hover:shadow-[16px_16px_0px_#000] transition-all duration-500 mb-20 group">
+        <div className="w-full bg-white border-2 border-black rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 flex flex-col md:flex-row gap-8 shadow-[6px_6px_0px_#000] md:shadow-[12px_12px_0px_#000] hover:shadow-[10px_10px_0px_#000] md:hover:shadow-[16px_16px_0px_#000] transition-all duration-500 mb-20 group">
             {/* Image Container */}
-            <div className="w-full md:w-1/2 aspect-video overflow-hidden rounded-[2rem] border-2 border-black">
+            <div className="w-full md:w-1/2 aspect-video overflow-hidden rounded-2xl border-2 border-black">
                 <img 
                     src={post?.photo ? post?.photo : images.samplePostImage} 
                     alt={post?.title} 
