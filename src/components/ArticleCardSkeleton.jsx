@@ -1,23 +1,29 @@
-import React from 'react';
+import React from "react";
 
-const ArticleCardSkeleton = () => {
-    return (
-        <div className="items animate-pulse">
-            <div className="left">
-                <div className="img-project bg-gray-300 rounded-lg w-64 h-40" />
-            </div>
-            <div className="rights mt-4">
-                <div className="h-6 bg-gray-300 rounded w-3/4 mb-2" />
-                <div className="h-4 bg-gray-300 rounded w-1/2 mb-2" />
-                <div className="h-3 bg-gray-300 rounded w-full mb-4" />
-                <div className="flex gap-3">
-                    <div className="h-10 w-20 bg-gray-300 rounded" />
-                    <div className="h-10 w-20 bg-gray-300 rounded" />
-                    <div className="h-10 w-20 bg-gray-300 rounded" />
-                </div>
-            </div>
-        </div>
-    );
+const ArticleCardSkeleton = ({ className }) => {
+  return (
+    <div
+      className={`bg-white border-2 border-black rounded-[2rem] p-6 flex flex-col shadow-[6px_6px_0px_#000] animate-pulse ${className}`}
+    >
+      {/* Image Skeleton */}
+      <div className="w-full aspect-video bg-gray-200 rounded-2xl border-2 border-black mb-6"></div>
+
+      {/* Content Area Skeleton */}
+      <div className="flex flex-col flex-grow gap-3">
+        {/* Category Skeleton */}
+        <div className="w-24 h-4 bg-gray-200 rounded-md mb-2"></div>
+        {/* Title Skeleton */}
+        <div className="w-full h-8 bg-gray-200 rounded-lg"></div>
+        <div className="w-2/3 h-8 bg-gray-200 rounded-lg"></div>
+      </div>
+
+      {/* Footer Actions Skeleton */}
+      <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+        <div className="w-16 h-6 bg-gray-200 rounded-md"></div>
+        <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+      </div>
+    </div>
+  );
 };
 
 export default ArticleCardSkeleton;
