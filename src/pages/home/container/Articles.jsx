@@ -40,11 +40,11 @@ const Articles = () => {
     const totalPageCount = Math.ceil(totalPostsCount / (isProjectPage ? 6 : 7));
 
     return (
-        <section className="w-full bg-[#f8f8f8] py-24 px-6">
+        <section className="w-full py-24 px-6">
             <div className="max-w-7xl mx-auto flex flex-col items-center">
 
                 {/* Header Area */}
-                <div className="w-full text-center mb-16" data-aos="fade-up">
+                <div data-aos="fade-down" className="w-full text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-black text-black uppercase mb-6 leading-tight">Imagination Trumps <br />Knowledge</h2>
                 </div>
 
@@ -52,7 +52,7 @@ const Articles = () => {
 
                 {/* Featured Project - Only on Page 1 or if not on project page */}
                 {!isLoading && featuredPost && (
-                    <div className="w-full" data-aos="fade-up" data-aos-delay="200">
+                    <div data-aos="fade-down" data-aos-delay="200">
                         <FeaturedProjectCard post={featuredPost} />
                     </div>
                 )}
@@ -72,10 +72,10 @@ const Articles = () => {
                         </div>
                     ) : (
                         gridPosts?.map((post) => (
-                            <div key={post._id} data-aos="fade-up" data-aos-delay={index * 100}>
-                                <ProjectCard post={post} />
-                            </div>
-
+                            <ProjectCard
+                                key={post._id}
+                                post={post}
+                            />
                         ))
                     )}
                 </div>

@@ -19,7 +19,8 @@ const Skills = () => {
     <section className="w-full max-w-7xl mx-auto px-6 pt-10 pb-20" id="skills">
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <div data-aos="fade-right">
+        <div data-aos="fade-down">
+
           <h2 className="text-4xl md:text-5xl font-black text-black uppercase mb-6 leading-tight">
             Professional <br /> Skills & Expertise
           </h2>
@@ -41,7 +42,8 @@ const Skills = () => {
           </div>
         </div>
         
-        <div className="hidden md:block" data-aos="fade-left">
+        <div className="hidden md:block" data-aos="fade-down">
+
            <div className="bg-white border-2 border-black p-2 rounded-3xl shadow-[16px_16px_0px_#000]">
               <div className="bg-black rounded-2xl p-12 text-white flex flex-col gap-6">
                  <h3 className="text-3xl font-black italic uppercase">Learning Never Stops</h3>

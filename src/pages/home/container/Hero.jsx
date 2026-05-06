@@ -16,8 +16,7 @@ const Hero = () => {
         <section className="w-full max-w-[1440px] mx-auto px-6 pt-4 md:pt-8 pb-12 md:pb-20 flex flex-col md:flex-row items-center justify-between gap-12 relative">
 
             {/* Left: Image & Spinning Text */}
-            <div className="w-full md:w-1/2 flex justify-center relative mt-10 md:mt-0 order-2 md:order-1 translate-x-3 md:translate-x-0" data-aos="fade-right" data-aos-delay="200">
-
+            <div className="w-full md:w-1/2 flex justify-center relative mt-10 md:mt-0 order-2 md:order-1 translate-x-3 md:translate-x-0">
 
 
                 <div className="relative w-full max-w-lg xl:max-w-xl">
@@ -47,14 +46,14 @@ const Hero = () => {
             </div>
 
             {/* Right: Text & Buttons */}
-            <div className="w-full md:w-1/2 flex flex-col items-start gap-6 order-1 md:order-2" data-aos="fade-left" data-aos-delay="400">
-
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-[#1a1a1a] capitalize">
+            <div className="w-full md:w-1/2 flex flex-col items-start gap-6 order-1 md:order-2">
+                <h1 data-aos="fade-down" className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-[#1a1a1a] capitalize">
                     Building Smart Solutions With Code & Design
                 </h1>
-                <p className="text-lg md:text-xl text-gray-800 leading-relaxed font-medium">
+                <p data-aos="fade-down" data-aos-delay="200" className="text-lg md:text-xl text-gray-800 leading-relaxed font-medium">
                     I am a full-stack developer with experience in web development, AI-based systems, and UI/UX design. I create scalable, responsive, and user-focused applications that solve real-world problems.
                 </p>
+
 
                 <div className="flex flex-wrap items-center gap-6 mt-4">
                     <a
