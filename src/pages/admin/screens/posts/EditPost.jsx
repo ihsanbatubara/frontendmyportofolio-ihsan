@@ -19,8 +19,8 @@ import {
 } from "../../../../utils/multiSelectTagUtils";
 
 const promiseOptions = async (inputValue) => {
-  const { data: categoriesData } = await getAllCategories();
-  return filterCategories(inputValue, categoriesData);
+  const { data: categoriesData } = await getAllCategories(inputValue, 1, 100);
+  return categoriesData.map(categoryToOption);
 };
 
 const EditPost = () => {

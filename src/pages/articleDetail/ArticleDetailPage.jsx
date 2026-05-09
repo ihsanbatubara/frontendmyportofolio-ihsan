@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import BreadCrumbs from "../../components/BreadCrumbs";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import CommentsContainer from "../../components/comments/CommentsContainer";
 import MainLayout from "../../components/MainLayout";
 import SocialShareButtons from "../../components/SocialShareButtons";
@@ -28,7 +29,7 @@ const ArticleDetailPage = () => {
       setbreadCrumbsData([
         { name: "Home", link: "/" },
         { name: "Project", link: "/project" },
-        { name: "Project title", link: `/project/${data.slug}` },
+        { name: "Project title", link: `/projectall/${data.slug}` },
       ]);
       setBody(parseJsonToHtml(data?.body));
     },
@@ -94,8 +95,31 @@ const ArticleDetailPage = () => {
                 )}
               </div>
 
-              {/* Action Buttons (Github/Demo if available in metadata?) */}
-              {/* Assuming Github/Demo links might be in the project body or we could add them if they were in the data object */}
+              {/* Action Buttons (Github/Demo) */}
+              <div className="flex flex-wrap items-center gap-6 mt-12">
+                {data?.demo && (
+                  <a
+                    href={data.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 bg-black text-white px-8 py-4 rounded-2xl font-black text-lg border-2 border-black shadow-[8px_8px_0px_rgba(0,0,0,0.2)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all active:scale-95"
+                  >
+                    <FaExternalLinkAlt />
+                    <span>Live Demo</span>
+                  </a>
+                )}
+                {data?.github && (
+                  <a
+                    href={data.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-2xl font-black text-lg border-2 border-black shadow-[8px_8px_0px_#000] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all active:scale-95"
+                  >
+                    <FaGithub className="text-2xl" />
+                    <span>Github Repo</span>
+                  </a>
+                )}
+              </div>
 
               {/* Comments Section */}
               <div className="mt-20 border-t-4 border-black pt-16">

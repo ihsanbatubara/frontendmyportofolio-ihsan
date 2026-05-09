@@ -17,9 +17,24 @@ const FeaturedProjectCard = ({ post }) => {
 
             {/* Content Area */}
             <div className="w-full md:w-1/2 flex flex-col justify-center py-4">
-                <span className="text-pink-500 font-bold text-lg mb-4 block uppercase tracking-widest">
-                    Featured Project
-                </span>
+                <div className="flex flex-wrap items-center gap-3 mb-4">
+                    <span className="text-pink-500 font-black text-xs md:text-sm uppercase tracking-[0.2em] border-r-2 border-black pr-3 leading-none">
+                        Featured
+                    </span>
+                    <div className="flex flex-wrap gap-2">
+                        {post?.categories?.length > 0 ? (
+                            post.categories.slice(0, 3).map((category, index) => (
+                                <span key={index} className="bg-yellow-300 text-black font-black text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border border-black shadow-[2px_2px_0px_#000]">
+                                    {category.title}
+                                </span>
+                            ))
+                        ) : (
+                            <span className="text-gray-400 font-bold text-[10px] uppercase tracking-wider">
+                                Uncategorized
+                            </span>
+                        )}
+                    </div>
+                </div>
                 <Link to={`/projectall/${post?.slug}`}>
                     <h3 className="text-4xl md:text-5xl font-black text-black mb-6 leading-[1.1] hover:text-pink-500 transition-colors">
                         {post?.title}
@@ -41,7 +56,7 @@ const FeaturedProjectCard = ({ post }) => {
                     </a>
                     <Link 
                         to={`/projectall/${post?.slug}`} 
-                        className="bg-black text-white px-10 py-4 rounded-2xl font-black text-lg border-2 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.3)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all active:scale-95"
+                        className="bg-black text-white px-10 py-4 rounded-2xl font-black text-lg border-2 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.3)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all active:scale-95 text-center"
                     >
                         Visit Project
                     </Link>

@@ -17,9 +17,19 @@ const ProjectCard = ({ post }) => {
             
             {/* Content Area */}
             <div className="flex flex-col flex-grow">
-                <span className="text-pink-500 font-bold text-sm mb-2">
-                    {post.categories?.[0]?.title || "Website Template"}
-                </span>
+                <div className="flex flex-wrap gap-2 mb-3">
+                    {post.categories?.length > 0 ? (
+                        post.categories.slice(0, 3).map((category, index) => (
+                            <span key={index} className="bg-pink-100 text-pink-600 font-black text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border border-pink-200">
+                                {category.title}
+                            </span>
+                        ))
+                    ) : (
+                        <span className="text-gray-400 font-bold text-[10px] uppercase tracking-wider">
+                            Uncategorized
+                        </span>
+                    )}
+                </div>
                 <Link to={`/projectall/${post.slug}`}>
                     <h3 className="text-2xl font-black text-black mb-4 leading-tight hover:text-pink-500 transition-colors">
                         {post.title}

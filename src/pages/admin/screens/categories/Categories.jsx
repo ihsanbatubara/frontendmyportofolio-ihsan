@@ -41,7 +41,7 @@ const Categories = () => {
     deleteDataHandler,
     setCurrentPage,
   } = useDataTable({
-    dataQueryFn: () => getAllCategories(searchKeyword, currentPage),
+    dataQueryFn: () => getAllCategories(searchKeyword, currentPage, 20),
     dataQueryKey: "categories",
     deleteDataMessage: "Category deleted successfully",
     mutateDeleteFn: ({ slug, token }) => deleteCategory({ slug, token }),
