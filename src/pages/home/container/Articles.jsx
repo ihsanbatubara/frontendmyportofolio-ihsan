@@ -10,6 +10,7 @@ import ArticleCardSkeleton from "../../../components/ArticleCardSkeleton";
 import Pagination from "../../../components/Pagination";
 
 import FeaturedProjectCard from "../../../components/FeaturedProjectCard";
+import FeaturedProjectCardSkeleton from "../../../components/FeaturedProjectCardSkeleton";
 
 const Articles = () => {
     const { pathname } = useLocation();
@@ -51,11 +52,15 @@ const Articles = () => {
 
 
 
-                {/* Featured Project - Only on Page 1 or if not on project page */}
-                {!isLoading && featuredPost && (
-                    <div data-aos="fade-down" data-aos-delay="200">
-                        <FeaturedProjectCard post={featuredPost} />
-                    </div>
+                {/* Featured Project */}
+                {isLoading || isFetching ? (
+                     currentPage === 1 && <FeaturedProjectCardSkeleton />
+                ) : (
+                    featuredPost && (
+                        <div data-aos="fade-down" data-aos-delay="200">
+                            <FeaturedProjectCard post={featuredPost} />
+                        </div>
+                    )
                 )}
 
 
@@ -63,9 +68,7 @@ const Articles = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full mb-20">
                     {isLoading || isFetching ? (
                         Array.from({ length: 4 }).map((_, index) => (
-                            <div key={index} className="w-full h-[500px]">
-                                <ArticleCardSkeleton />
-                            </div>
+                            <ArticleCardSkeleton key={index} />
                         ))
                     ) : isError ? (
                         <div className="col-span-full">

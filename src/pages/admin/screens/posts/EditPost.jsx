@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import CreatableSelect from "react-select/creatable";
 import { getSinglePost, updatePost } from "../../../../services/index/posts";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import ArticleDetailSkeleton from "../../../articleDetail/components/ArticleDetailSkeleton";
+import EditPostSkeleton from "./EditPostSkeleton";
 import ErrorMessage from "../../../../components/ErrorMessage";
 import { stables } from "../../../../constants";
 import { HiOutlineCamera } from "react-icons/hi";
@@ -108,7 +108,7 @@ const EditPost = () => {
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     <div className="container mx-auto max-w-4xl p-10 bg-white border-4 border-black rounded-[40px] shadow-[16px_16px_0px_rgba(0,0,0,0.1)] mb-20">
       {isLoading ? (
-        <ArticleDetailSkeleton />
+        <EditPostSkeleton />
       ) : isError ? (
         <ErrorMessage message="Couldn't fetch the post detail" />
       ) : (

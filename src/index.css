@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 
 @theme {
@@ -36,4 +37,21 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: #000 #f1f1f1;
+}
+
+@layer components {
+  .editor-btn {
+    @apply p-2 rounded-lg border-2 border-black bg-white hover:bg-black hover:text-white transition-all duration-200 text-lg flex items-center justify-center min-w-[40px] h-[40px] cursor-pointer;
+  }
+  .active-editor-btn {
+    @apply bg-black text-white;
+  }
+  
+  .tiptap {
+    @apply focus:outline-none;
+  }
+
+  .tiptap p.is-editor-empty:first-child::before {
+    @apply text-gray-400 content-[attr(data-placeholder)] float-left h-0 pointer-events-none;
+  }
 }

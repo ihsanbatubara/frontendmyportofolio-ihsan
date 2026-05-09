@@ -2,8 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import CSS untuk react-toastify
+import { toast } from "react-hot-toast";
 import {
   getSingleCategory,
   updateCategory,
@@ -36,8 +35,8 @@ const EditCategories = () => {
       },
       onSuccess: (data) => {
         queryClient.invalidateQueries(["categories", slug]);
-        toast.success("Category is updated");
-        navigate(`/admin/categories/manage/edit/${data._id}`, {
+        toast.success("Category is updated successfully! 🏷️");
+        navigate(`/admin/categories/manage`, {
           replace: true,
         });
       },
@@ -57,38 +56,52 @@ const EditCategories = () => {
   };
 
   return (
-    <>
-    <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
-    <div className="max-w-3xl mx-auto py-8 px-6 border-2 border-white rounded-lg shadow-lg">
-      <h4 className="text-2xl font-semibold text-white">Update Category</h4>
-      <p className="mt-2 text-gray-500 text-sm">Edit the title of the category below:</p>
-      
-      <div className="mt-6">
-        <label htmlFor="category-title" className="block text-sm font-medium text-white">
-          Category Title
-        </label>
-        <input
-          id="category-title"
-          value={categoryTitle}
-          onChange={(e) => setCategoryTitle(e.target.value)}
-          placeholder="Enter category title"
-          className="w-full mt-2 px-4 py-3 text-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-        />
-      </div>
+    <div className="p-4 md:p-6 min-h-screen font-montserrat">
+      <div className="max-w-3xl mx-auto">
+        <div className="bg-white p-6 md:p-12 border-4 border-black rounded-[30px] md:rounded-[40px] shadow-[8px_8px_0px_#000] md:shadow-[16px_16px_0px_#000]">
+          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight text-black mb-4">
+            Update Category
+          </h2>
+          <p className="text-gray-500 font-bold mb-8 md:mb-10 uppercase text-[10px] md:text-xs tracking-widest leading-relaxed">
+            Modify the category title to organize your projects and posts effectively.
+          </p>
+          
+          <div className="space-y-8">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="category-title" className="text-xs font-black uppercase tracking-widest text-black px-1">
+                Category Title
+              </label>
+              <input
+                id="category-title"
+                value={categoryTitle}
+                onChange={(e) => setCategoryTitle(e.target.value)}
+                placeholder="e.g. Web Development"
+                className="w-full bg-[#f8f8f8] border-2 border-black p-4 rounded-2xl font-bold text-black focus:outline-none focus:shadow-[4px_4px_0px_#000] transition-all placeholder:text-gray-300"
+              />
+            </div>
 
-      <button
-        disabled={isLoadingUpdateCategory || isLoading || isError}
-        type="button"
-        onClick={handleUpdateCategory}
-        className={`mt-6 w-full py-3 px-6 text-white font-semibold rounded-lg transition duration-300 ease-in-out
-          ${isLoadingUpdateCategory || isLoading || isError
-            ? "bg-gray-500 cursor-not-allowed"
-            : "bg-purple-500 hover:bg-purple-600 focus:ring-2 focus:ring-purple-500"}`}
-      >
-        {isLoadingUpdateCategory || isLoading ? "Updating..." : "Update Category"}
-      </button>
+            <button
+              disabled={isLoadingUpdateCategory || isLoading || isError}
+              type="button"
+              onClick={handleUpdateCategory}
+              className={`w-full font-black uppercase py-5 rounded-2xl border-4 border-black transition-all flex items-center justify-center gap-2
+                ${isLoadingUpdateCategory || isLoading || isError
+                  ? "bg-gray-200 text-gray-400 cursor-not-allowed border-gray-300"
+                  : "bg-yellow-300 text-black shadow-[8px_8px_0px_#000] hover:shadow-none hover:translate-x-1 hover:translate-y-1 active:scale-[0.98]"}`}
+            >
+              {isLoadingUpdateCategory || isLoading ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+                  Updating...
+                </>
+              ) : (
+                "Update Category"
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    </>
   );
 };
 

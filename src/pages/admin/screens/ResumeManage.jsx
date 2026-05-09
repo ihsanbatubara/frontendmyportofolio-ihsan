@@ -47,24 +47,24 @@ const ResumeManage = () => {
   };
 
   return (
-    <div className="p-6 min-h-screen font-montserrat">
+    <div className="p-4 md:p-6 min-h-screen font-montserrat">
       <div className="max-w-3xl mx-auto">
-        <div className="bg-white p-10 border-4 border-black rounded-[40px] shadow-[16px_16px_0px_#000]">
-          <h2 className="text-4xl font-black uppercase tracking-tight text-black mb-4">
+        <div className="bg-white p-6 md:p-10 border-4 border-black rounded-[30px] md:rounded-[40px] shadow-[8px_8px_0px_#000] md:shadow-[16px_16px_0px_#000]">
+          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight text-black mb-4">
             Resume Management
           </h2>
-          <p className="text-gray-500 font-bold mb-10 uppercase text-xs tracking-widest">
+          <p className="text-gray-500 font-bold mb-8 md:mb-10 uppercase text-[10px] md:text-xs tracking-widest leading-relaxed">
             Upload and manage your professional CV/Resume (PDF format)
           </p>
 
           <div className="space-y-10">
             {/* Current Resume Info */}
-            <div className="bg-gray-50 border-2 border-black rounded-3xl p-8 flex flex-col md:flex-row items-center gap-6">
-              <div className="w-20 h-20 bg-red-100 text-red-600 rounded-2xl border-2 border-black flex items-center justify-center text-4xl shadow-[4px_4px_0px_#000]">
+            <div className="bg-gray-50 border-2 border-black rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-red-100 text-red-600 rounded-2xl border-2 border-black flex items-center justify-center text-3xl md:text-4xl shadow-[4px_4px_0px_#000]">
                 <FaFilePdf />
               </div>
               <div className="flex-1 text-center md:text-left">
-                <h3 className="text-xl font-black uppercase">Your Current Resume</h3>
+                <h3 className="text-lg md:text-xl font-black uppercase">Your Current Resume</h3>
                 <p className="text-sm text-gray-500 font-bold mt-1">
                   {profileData?.resume ? "Last updated on Cloudinary" : "No resume uploaded yet"}
                 </p>
@@ -97,26 +97,26 @@ const ResumeManage = () => {
                 />
                 <label
                   htmlFor="resume-upload"
-                  className={`w-full flex flex-col items-center justify-center gap-4 py-12 border-4 border-dashed border-black rounded-[32px] cursor-pointer transition-all ${
+                  className={`w-full flex flex-col items-center justify-center gap-4 py-8 md:py-12 border-4 border-dashed border-black rounded-[24px] md:rounded-[32px] cursor-pointer transition-all ${
                     updateResumeIsLoading 
                     ? "bg-gray-100 opacity-50 cursor-not-allowed" 
                     : "bg-yellow-50 hover:bg-yellow-100 group-hover:scale-[1.01]"
                   }`}
                 >
-                  <FaCloudUploadAlt className="text-5xl text-black" />
+                  <FaCloudUploadAlt className="text-4xl md:text-5xl text-black" />
                   <div className="text-center">
-                    <span className="block text-xl font-black uppercase">
+                    <span className="block text-lg md:text-xl font-black uppercase px-4">
                       {updateResumeIsLoading ? "Uploading File..." : "Click to select PDF"}
                     </span>
-                    <span className="text-xs font-bold text-gray-500">Max file size: 5MB</span>
+                    <span className="text-[10px] md:text-xs font-bold text-gray-500">Max file size: 5MB</span>
                   </div>
                 </label>
               </div>
             </div>
 
             {/* Note */}
-            <div className="bg-blue-50 border-2 border-black rounded-2xl p-6">
-              <p className="text-xs font-bold text-blue-800 leading-relaxed">
+            <div className="bg-blue-50 border-2 border-black rounded-2xl p-4 md:p-6">
+              <p className="text-[10px] md:text-xs font-bold text-blue-800 leading-relaxed">
                 <span className="font-black uppercase mr-2">Note:</span>
                 Uploading a new resume will automatically replace the existing one. The link in your Hero section on the homepage will always point to the latest version.
               </p>

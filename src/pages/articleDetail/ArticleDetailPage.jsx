@@ -52,7 +52,7 @@ const ArticleDetailPage = () => {
       ) : (
         <section className="bg-[#f8f8f8] min-h-screen py-12 px-6">
           <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 items-start">
-            
+
             <article className="flex-1 bg-white border-4 border-black rounded-[40px] p-6 md:p-12 shadow-[16px_16px_0px_rgba(0,0,0,0.1)] overflow-hidden">
               <div className="mb-8">
                 <BreadCrumbs data={breadCrumbsData} />

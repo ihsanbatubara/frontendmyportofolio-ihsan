@@ -9,8 +9,9 @@ const Editor = ({ onDataChange, content, editable }) => {
     extensions: extensions,
     editorProps: {
       attributes: {
-        class:
-          "!prose !dark:prose-invert prose-sm sm:prose-base max-w-none mt-7 focus:outline-none prose-pre:bg-[#282c34] prose-pre:text-[#abb2bf]",
+        class: `!prose !dark:prose-invert prose-sm sm:prose-base max-w-none focus:outline-none prose-pre:bg-[#282c34] prose-pre:text-[#abb2bf] ${
+          editable ? "p-5 min-h-[400px] border-t-2 border-black" : "p-0 min-h-0"
+        }`,
       },
     },
     onUpdate: ({ editor }) => {
@@ -21,9 +22,9 @@ const Editor = ({ onDataChange, content, editable }) => {
   });
 
   return (
-    <div className="w-full relative your-editor-class">
+    <div className="w-full relative">
       {editable && <MenuBar editor={editor} />}
-      <EditorContent editor={editor}  />
+      <EditorContent editor={editor} />
     </div>
   );
 };

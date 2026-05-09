@@ -81,7 +81,7 @@ const ProjectPage = () => {
                     <div className="all-items flex flex-wrap gap-5">
                         {isLoading || isFetching ? (
                             Array.from({ length: 6 }).map((_, index) => (
-                                <ArticleCardSkeleton key={index} />
+                                <ArticleCardSkeleton key={index} className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]" />
                             ))
                         ) : isError ? (
                             <ErrorMessage message="Couldn't fetch the posts data" />
