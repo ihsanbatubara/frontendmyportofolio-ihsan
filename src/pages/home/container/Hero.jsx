@@ -48,10 +48,10 @@ const Hero = () => {
             {/* Right: Text & Buttons */}
             <div className="w-full md:w-1/2 flex flex-col items-start gap-6 order-1 md:order-2">
                 <h1 data-aos="fade-down" className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-[#1a1a1a] capitalize">
-                    Building Smart Solutions With Code & Design
+                    Engineering Intelligent Solutions for Real-World Problems
                 </h1>
                 <p data-aos="fade-down" data-aos-delay="200" className="text-lg md:text-xl text-gray-800 leading-relaxed font-medium">
-                    I am a full-stack developer with experience in web development, AI-based systems, and UI/UX design. I create scalable, responsive, and user-focused applications that solve real-world problems.
+                    I am a Computer Engineering graduate with experience in web development, artificial intelligence-based systems, and IoT integration. I create responsive applications and smart automation solutions that help solve real-world problems.
                 </p>
 
 
