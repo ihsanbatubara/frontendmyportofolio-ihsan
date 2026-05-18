@@ -56,14 +56,14 @@ const Header = () => {
         {/* logo */}
         <div className="p-8 border-b-2 border-black hidden lg:block">
           <Link to="/" className="flex items-center justify-center w-14 h-14 bg-black text-white rounded-full font-bold text-2xl mx-auto shadow-[4px_4px_0px_rgba(0,0,0,0.2)]">
-            TF
+            MT
           </Link>
           <p className="text-center mt-4 font-black uppercase text-[10px] tracking-widest text-black">Admin Panel</p>
         </div>
 
         <div className="lg:hidden flex items-center gap-3">
           <Link to="/" className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center font-bold text-lg">
-            TF
+            MT
           </Link>
           <span className="font-black uppercase text-[10px] tracking-widest">Admin</span>
         </div>
@@ -89,7 +89,7 @@ const Header = () => {
             <div className="fixed top-0 bottom-0 left-0 w-[280px] bg-white p-6 lg:static lg:h-full lg:w-full lg:p-6 z-50 flex flex-col border-r-4 border-black lg:border-r-0 overflow-y-auto custom-scrollbar">
               <div className="lg:hidden mb-8 border-b-2 border-black pb-6 text-center">
                 <Link to="/" className="w-14 h-14 bg-black text-white rounded-full flex items-center justify-center font-bold text-2xl mx-auto shadow-[4px_4px_0px_rgba(0,0,0,0.2)]">
-                  TF
+                  MT
                 </Link>
               </div>
 
