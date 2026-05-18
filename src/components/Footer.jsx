@@ -20,7 +20,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="flex flex-col gap-6 max-w-sm">
             <Link to="/" className="flex items-center justify-center rounded-full w-16 h-16 bg-white text-black border-4 border-black text-2xl font-black shadow-[6px_6px_0px_#FFE600] hover:scale-110 transition-transform">
-              TF
+              MT
             </Link>
             <h2 className="text-3xl font-black uppercase tracking-tight leading-none">
               Building Digital <br />
