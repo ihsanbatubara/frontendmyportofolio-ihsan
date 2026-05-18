@@ -32,7 +32,7 @@ const Hero = () => {
                             <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="transparent" />
                             <text className="text-[12px] font-bold uppercase">
                                 <textPath href="#circlePath" startOffset="0%">
-                                    AI • & Computer Vision • Design
+                                    AI • & Computer Vision • Design •
                                 </textPath>
                             </text>
                         </svg>
