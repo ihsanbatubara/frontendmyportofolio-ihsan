@@ -36,14 +36,14 @@ const About = () => {
           <div data-aos="fade-down" data-aos-delay="200" className="flex flex-col gap-4 text-base font-medium leading-relaxed text-gray-800">
 
             <p>
-              Hi, I'm <span className="font-bold">Tio Fulalo</span>, a Bachelor of Informatics Engineering graduate with a strong passion for technology and digital innovation. I specialize in web and mobile application development, including AI-based solutions, and have hands-on experience with modern development tools and frameworks.
+              Hello, I am <span className="font-bold">Mhd Tampan Ahyaul Ihsan Batubara</span>,  a Computer Engineering graduate from Syiah Kuala University (GPA 3.70) with a strong passion for technology and digital innovation. I specialize in web development as well as artificial intelligence, particularly in Computer Vision and Object Detection modeling.
             </p>
             <p>
-              I have contributed to multiple real-world projects, such as building responsive company profile websites, developing web-based health screening systems, and supporting IT infrastructure and digitalization initiatives. My expertise includes UI/UX design, full-stack development (using MySQL and MongoDB for database management), and data visualization, ensuring that every product is both functional and user-centered.
+              I have contributed to various real-world projects, ranging from front-end development for an ecotourism website, creating a digital task management and attendance system for a government ministry (SIMANTU & SIKAP), to conducting mangrove detection research using Deep Learning. My experience spans front-end and full-stack development, IT support, multimedia design, and co-leading an autonomous robot programming division.
             </p>
 
             <p>
-              I believe that great digital products are not just visually appealing, but also solve real problems efficiently. With a strong understanding of the software development life cycle and a commitment to continuous learning, I strive to create impactful and innovative solutions.
+              I believe that great digital products are not only visually appealing but must also solve problems efficiently. With a strong understanding of the software development life cycle, leadership, and a commitment to continuous learning, I always strive to create innovative and impactful solutions.
             </p>
           </div>
         </div>
