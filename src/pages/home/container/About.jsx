@@ -74,11 +74,11 @@ const About = () => {
             <span className="text-xs md:text-lg font-bold text-gray-500 uppercase tracking-tight md:tracking-normal">Internships / Experience</span>
           </div>
           <div data-aos="fade-down" data-aos-delay="300" className="flex flex-col flex-1 md:flex-none">
-            <span className="text-4xl md:text-8xl font-black text-[#1a1a1a]">10+</span>
+            <span className="text-4xl md:text-8xl font-black text-[#1a1a1a]">8+</span>
             <span className="text-xs md:text-lg font-bold text-gray-500 uppercase tracking-tight md:tracking-normal">Projects Completed</span>
           </div>
           <div data-aos="fade-down" data-aos-delay="500" className="flex flex-col flex-1 md:flex-none">
-            <span className="text-4xl md:text-8xl font-black text-[#1a1a1a]">2+</span>
+            <span className="text-4xl md:text-8xl font-black text-[#1a1a1a]">3+</span>
             <span className="text-xs md:text-lg font-bold text-gray-500 uppercase tracking-tight md:tracking-normal">Years Experience</span>
           </div>
         </div>
